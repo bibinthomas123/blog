@@ -2,20 +2,19 @@ import {React,useState} from "react";
 import { Container, Row, Col ,Form,Button } from "react-bootstrap";
 import {Link} from "react-router-dom"
 import "./login.css"
+import axios from "axios";
 
 
-function handleLogin (e){
-    e.preventDefault();
-    // var username = document.getElementById("username").value;
-    // var password = document.getElementById("password").value;
-    // var login = document.getElementById("login").value;
-    // var message = document.getElementById("message").value;
-
-}
 
 export default function Login() {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+
+    function handleLogin (e){
+      e.preventDefault();
+      axios.post("http://localhost:5000/users/login",{email,password}).then(({data})=> console.log(data)).catch((err)=>console.log(err))
+     
+  }
 
   return (
     <Container>
