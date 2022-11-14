@@ -11,7 +11,7 @@ export default function Signup() {
   
   function handleSignup (e){
     axios.post("http://localhost:5000/users",{email,password})
-    .then(res=>console.log(res)).catch(err => console.log(err))
+    .then(res=>console.log(res.data)).catch(err => console.log(err))
     e.preventDefault();
   
   }

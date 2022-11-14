@@ -1,16 +1,21 @@
 import React from "react";
 import { Nav, NavDropdown, Navbar, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import logo from "../images/twitter.png"
+import logo from "../images/twitter.png";
+import "../components/navbar.css"
 function navigation() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="navbar">
       <Container>
         <LinkContainer to="/">
-        <Navbar.Brand>
-          <img src={logo} style= {{width:32,marginRight:'13px' }}alt="wett"/>The Blog
+          <Navbar.Brand>
+            <img
+              src={logo}
+              style={{ width: 32, marginRight: "13px" }}
+              alt="wett"
+            />
+            The Blog
           </Navbar.Brand>
-        
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
