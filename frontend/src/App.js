@@ -1,5 +1,6 @@
 import Home from "./pages/home.js"
 import Signup from "./pages/signup.js";
+import Write from "./pages/Write/write";
 // import About from "./pages/about.js"
 import Login from  "./pages/login"
 import Footer from "./components/footer/footer"
@@ -15,15 +16,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/pages" element={<Single />} />
+        <Route path="/viewpage" element={<Single />} />
         <Route path="/signup" element={<Signup />} />
-
-
-
-       </Routes>  
+        <Route path="/addPost" element={<Write />} />
+      </Routes>  
     
-    <Footer />
     
+      <Footer />
     </BrowserRouter>
     
   );
