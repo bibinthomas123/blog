@@ -16,14 +16,20 @@ export default function Write() {
                 aria-describedby="inputGroup-sizing-lg"
                 placeholder="Title"
               ></input>
-              <input
+             
+            </div>
+          </div>
+        </section>
+        <section class="container">
+          <div class="input-group">
+            {/* add options here to select from the category list  */}
+          <input
                 type="text"
                 className="  form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-lg"
                 placeholder="category"
               ></input>
-            </div>
           </div>
         </section>
         <section class="container">
