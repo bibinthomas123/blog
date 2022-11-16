@@ -11,6 +11,7 @@ const multer = require("multer");
 env.config();
 app.use(express.json());
 
+//database connection
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -21,6 +22,7 @@ mongoose
     console.log("Error", err);
   });
 
+//for image storage
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, "images");
@@ -36,11 +38,14 @@ const upload =multer(
 app.post("/api/upload",upload.single("file"),(req,res)=>{
   res.status(200).json("file has been uploaded")
 })
+
+//routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", CatRoute);
 
+//server port
 app.listen(5000, () => {
   console.log("Backend is running");
 });

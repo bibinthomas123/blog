@@ -10,7 +10,7 @@ import Single from "./pages/single_page/single.jsx";
 import Settings from "./pages/settings.jsx";
 
 function App() {
-  const user = false
+  const user = true
   return (
     <BrowserRouter>
       <Navbarexp />
