@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import "./post.css";
+import { Link } from "react-router-dom";
 
 export default function Post({ post }) {
   return (
@@ -13,19 +14,21 @@ export default function Post({ post }) {
           />
         </div>
       )}
-      <Card.Body>
-        <Card.Title className="title">{post.title}</Card.Title>
-        <div className="postcats">
-          {post.categories.map((e) => {
-            <Card.Subtitle> bibin</Card.Subtitle>;
-          })}
-        </div>
-        <Card.Subtitle>by Author</Card.Subtitle>
-        <Card.Text className="my-3 subtext">{post.desc}</Card.Text>
-        <Card.Footer className="text-center date">
-          Edited on {new Date(post.createdAt).toDateString()}
-        </Card.Footer>
-      </Card.Body>
+      <Link className="link" to={`/viewpage/${post._id}`}>
+        <Card.Body>
+          <Card.Title className="title">{post.title}</Card.Title>
+          <div className="postcats">
+            {post.categories.map((e) => {
+              <Card.Subtitle> bibin</Card.Subtitle>;
+            })}
+          </div>
+          <Card.Subtitle>by {post.username}</Card.Subtitle>
+          <Card.Text className="my-3 subtext">{post.desc}</Card.Text>
+          <Card.Footer className="text-center date">
+            Edited on {new Date(post.createdAt).toDateString()}
+          </Card.Footer>
+        </Card.Body>
+      </Link>
     </Card>
   );
 }
