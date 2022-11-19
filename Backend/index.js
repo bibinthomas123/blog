@@ -6,10 +6,12 @@ const authRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const CatRoute = require("./routes/category");
-const multer = require("multer");
+const multer = require("multer");//storage used to store the images 
+const path = require("path");
 
 env.config();
 app.use(express.json());
+app.use("/images",express.static(path.join(__dirname,".images")))
 
 //database connection
 mongoose

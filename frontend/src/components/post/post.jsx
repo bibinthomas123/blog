@@ -4,12 +4,13 @@ import "./post.css";
 import { Link } from "react-router-dom";
 
 export default function Post({ post }) {
+  const PF = "localhost:5000/images/"
   return (
     <Card style={{ width: 450, marginTop: 25 }}>
       {post.photo && (
         <div className="image text-center">
           <Card.Img
-            src="https://images.unsplash.com/photo-1521123845560-14093637aa7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            src={""}
             alt="the posts"
           />
         </div>
