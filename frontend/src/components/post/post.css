@@ -25,3 +25,8 @@
    padding: 15px;
    border-radius: 10px;
 }
+.post {
+    width: 385px;
+    /* margin: 0px 25px 40px 25px; */
+    margin:0px 10px 20px 0;
+  }

@@ -4,13 +4,13 @@ import "./post.css";
 import { Link } from "react-router-dom";
 
 export default function Post({ post }) {
-  const PF = "localhost:5000/images/"
+  const PF = "http://localhost:5000/images/";
   return (
-    <Card style={{ width: 450, marginTop: 25 }}>
+    <Card style={{ width: 450, marginTop: 25 }} className="post">
       {post.photo && (
         <div className="image text-center">
           <Card.Img
-            src={""}
+            src={PF + post.photo}
             alt="the posts"
           />
         </div>
@@ -20,7 +20,7 @@ export default function Post({ post }) {
           <Card.Title className="title">{post.title}</Card.Title>
           <div className="postcats">
             {post.categories.map((e) => {
-              <Card.Subtitle> bibin</Card.Subtitle>;
+              <Card.Subtitle> </Card.Subtitle>;
             })}
           </div>
           <Card.Subtitle>by {post.username}</Card.Subtitle>

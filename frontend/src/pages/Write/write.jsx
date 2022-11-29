@@ -38,7 +38,7 @@ export default function Write() {
       <div className="write">
         {file && (
        <div >
-       <img src={URL.createObjectURL(file)} alt style={{borderRadius:20}} className="singlePostImg px-2 my-5" />
+       <img src={URL.createObjectURL(file)} alt="" style={{borderRadius:20}} className="singlePostImg px-2 my-5" />
       </div>
       )}
         

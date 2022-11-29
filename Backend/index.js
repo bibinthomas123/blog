@@ -11,7 +11,7 @@ const path = require("path");
 
 env.config();
 app.use(express.json());
-app.use("/images",express.static(path.join(__dirname,".images")))
+app.use("/images",express.static(path.join(__dirname,"/images")))
 
 //database connection
 mongoose
@@ -27,10 +27,10 @@ mongoose
 //for image storage
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "images");
+    callback(null, "/images");
   },
   filename: (req, file, callback) => {
-    callback(null, "hello.jpeg");
+    callback(null, req.body.name);
   },
 });
 
