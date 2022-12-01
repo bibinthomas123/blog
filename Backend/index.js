@@ -6,11 +6,15 @@ const authRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const CatRoute = require("./routes/category");
-const multer = require("multer");
+const multer = require("multer");//storage used to store the images 
+const path = require("path");
 
 env.config();
 app.use(express.json());
+app.use("/images",express.static(path.join(__dirname,"/images")))
+// console.log(path.join(__dirname,"/images"))
 
+//database connection
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -21,26 +25,28 @@ mongoose
     console.log("Error", err);
   });
 
+//for image storage
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, "images");
   },
   filename: (req, file, callback) => {
-    callback(null, "hello.jpeg");
+    callback(null, req.body.name);
   },
 });
 
-const upload =multer(
-  {storage:storage}
-  )
+const upload = multer({storage:storage});
 app.post("/api/upload",upload.single("file"),(req,res)=>{
   res.status(200).json("file has been uploaded")
 })
+
+//routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", CatRoute);
 
+//server port
 app.listen(5000, () => {
   console.log("Backend is running");
 });

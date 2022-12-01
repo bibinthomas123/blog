@@ -8,9 +8,11 @@ import {  BrowserRouter,Route,Routes,Navigate} from "react-router-dom";
 import Navbarexp from "./components/navbar/test";
 import Single from "./pages/single_page/single.jsx";
 import Settings from "./pages/settings.jsx";
+import { Context } from "./context/context.js";
+import {useContext} from "react"
 
 function App() {
-  const user = false
+  const {user} = useContext(Context)
   return (
     <BrowserRouter>
       <Navbarexp />

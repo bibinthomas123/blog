@@ -2,16 +2,27 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from "../../images/twitter.png";
-import profileimage from "../../images/profile.jpg";
 // import {Link} from "react-router-dom"
+import { Context } from "../../context/context.js";
+import {useContext} from "react"
 
 
 function Navbarexp() {
-  const user = false
+  const {user,dispatch} = useContext(Context)
+
+  const handleLogout = ()=>{
+    dispatch({
+      type: "LOGOUT"
+    })
+
+    localStorage.clear();
+    window.location.reload();
+
+  }
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" sticky="top" variant="light"  className="justify-content-center">
       <Container >
-      <Navbar.Brand>
+      <Navbar.Brand href="/">
             <img
               src={logo}
               style={{ width: 32, marginRight: "13px" }}
@@ -28,10 +39,10 @@ function Navbarexp() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/addpost">Write</Nav.Link>
-            <Nav.Link href="/login">Logout</Nav.Link>
+            <Nav.Link href="/login"onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
           <Nav className="ms-auto" >
-            <Nav.Link><img src={profileimage} style={{ width: 40 ,height:40}} className="rounded-circle" alt="profile" /></Nav.Link>
+            <Nav.Link><img src={user.profilePiczm} style={{ width: 40 ,height:40}} className="rounded-circle" alt="profile" /></Nav.Link>
             <Nav.Link eventKey={2} href="#memes" className="d-flex align-items-center justify-content-center">
             <i className="text-wrap mx-2 fa-sharp fa-solid fa-magnifying-glass"></i>
             </Nav.Link>
