@@ -42,7 +42,7 @@ export default function Write() {
       </div>
       )}
         
-        <form action="post" onSubmit={handleSubmit}>
+        <form action="post" onSubmit={handleSubmit} enctype= 'multipart/form-data'>
           <section class="container">
             <div class="input-group">
               {/* add options here to select from the category list  */}
@@ -65,7 +65,7 @@ export default function Write() {
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-lg"
                   placeholder="Title"
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={e => setTitle(e.target.value)}
                 ></input>
               </div>
             </div>
@@ -77,10 +77,10 @@ export default function Write() {
                 rows="50"
                 type="textarea"
                 placeholder="Tell us your story.. :)"
-                onChange={(e) => setDesc(e.target.value)}
+                onChange={e => setDesc(e.target.value)}
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary my-3">
+            <button type="submit" class="btn btn-primary my-3 ">
               Submit
             </button>
           </section>

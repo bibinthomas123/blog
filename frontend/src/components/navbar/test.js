@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from "../../images/twitter.png";
-// import {Link} from "react-router-dom"
 import { Context } from "../../context/context.js";
 import {useContext} from "react"
 
@@ -42,7 +41,7 @@ function Navbarexp() {
             <Nav.Link href="/login"onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
           <Nav className="ms-auto" >
-            <Nav.Link><img src={user.profilePiczm} style={{ width: 40 ,height:40}} className="rounded-circle" alt="profile" /></Nav.Link>
+          <Nav.Link href="/settings" ><img src={user.profilePic} style={{ width: 40 ,height:40}} className="rounded-circle" alt="profile" /></Nav.Link>
             <Nav.Link eventKey={2} href="#memes" className="d-flex align-items-center justify-content-center">
             <i className="text-wrap mx-2 fa-sharp fa-solid fa-magnifying-glass"></i>
             </Nav.Link>
