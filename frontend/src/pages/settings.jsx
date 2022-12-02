@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Context } from "../context/context";
 import "./setting.css";
 import axios from "axios";
-// const User = require("../models/user");
+
 
 export default function Settings() {
   const [file, setFile] = useState(null);
@@ -70,13 +70,14 @@ export default function Settings() {
                 <div class="col-md-3 text-center mb-5">
                   <div class="avatar avatar-xl position-relative">
                     <img
-                      src={PF+user.profilePic}
+                      src={file ?URL.createObjectURL(file):PF+user.profilePic}
                       alt="..."
                       class="avatar-img rounded-circle"
                     />
+          
                     <div className="position-absolute bottom-0 end-0 translate-middle  ">
                       <label htmlFor="fileInput">
-                        <i className="settingsPPIcon far fa-duotone border rounded-circle bg-dark ml-2 p-2 fa-user"></i>
+                        <i className="settingsPPIcon far fa-duotone border rounded-circle pointer ml-2 p-2 fa-user"></i>
                         
                       </label>
                       <input
@@ -91,7 +92,7 @@ export default function Settings() {
                 <div class="col">
                   <div class="row align-items-center">
                     <div class="col-md-7">
-                      <h4 class="mb-1">{user.username}</h4>
+                      <h4 class="mb-1 bg-light">{user.username}</h4>
                       <p class="small mb-3">
                         <span class="badge badge-dark">New York, USA</span>
                       </p>
@@ -104,6 +105,7 @@ export default function Settings() {
                         Mauris blandit nisl ullamcorper, rutrum metus in, congue
                         lectus. In hac habitasse platea dictumst. Cras urna
                         quam, malesuada vitae risus at, pretium blandit sapien.
+                        {user.bio}
                       </p>
                     </div>
                     <div class="col">
@@ -123,10 +125,10 @@ export default function Settings() {
                   <input
                     type="text"
                     id="firstname"
-                    class="form-control"
+                    class="form-control"  
                     placeholder={user.username}
                     onChange={e=>setUsername(e.target.value)}
-                  />
+                  /> 
                 </div>
                 
               </div>
@@ -163,7 +165,7 @@ export default function Settings() {
               <hr class="my-4" />
               <div class="row mb-4">
                 <div class="col-md-6">
-                  <div class="form-group">
+                  {/* <div class="form-group">
                     <h2>Change Password</h2>
                     <label for="inputPassword4">Old Password</label>
                     <input
@@ -172,16 +174,16 @@ export default function Settings() {
                       id="inputPassword5"
                       
                     />
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  {/* <div className="form-group">
                     <label for="inputPassword5">New Password</label>
                     <input
                       type="password"
                       className="form-control"
                       id="inputPassword5"
                     //   onChange={e=>userpassword(e.target.value)}
-                    />
-                  </div>
+                    /> */}
+                  {/* </div> */}
                   <div className="form-group">
                     <label for="inputPassword6">Confirm Password</label>
                     <input
@@ -210,7 +212,9 @@ export default function Settings() {
               <button type="submit" className="btn btn-primary">
                 Save Change
               </button>
-              {success && <span className="bg-success">Profile has been updated succesFully</span>}
+              {success && <div class="alert alert-success my-2" role="alert">
+  The Changes are Updated!!
+</div>}
             </form>
           </div>
         </div>
