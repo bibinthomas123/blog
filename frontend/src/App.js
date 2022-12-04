@@ -7,14 +7,24 @@ import {  BrowserRouter,Route,Routes,Navigate} from "react-router-dom";
 import About from "./components/about/about.jsx";
 import Navbarexp from "./components/navbar/test";
 import Single from "./pages/single_page/single.jsx";
+import Loadings from "./components/loading/loading"
 import Settings from "./pages/settings.jsx";
 import { Context } from "./context/context.js";
-import {useContext} from "react"
+import {useContext,useEffect,useState} from "react"
 
 function App() {
   const {user} = useContext(Context)
+  const [loading,setLoading]=useState(false)
+  useEffect(()=>{
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000);
+  },[])
   return (
-    <BrowserRouter>
+      <>
+        {
+      loading ? <Loadings />:  <BrowserRouter>
       <Navbarexp />
       <Routes>
         <Route path="/" element={user ? (<Home/>) : (<Navigate  to={"/login"}/>)} />
@@ -29,6 +39,12 @@ function App() {
     
       <Footer />
     </BrowserRouter>
+        }
+      </>
+    
+      
+      
+     
   );
 }
 
