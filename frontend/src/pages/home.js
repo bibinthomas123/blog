@@ -8,7 +8,6 @@ import { useLocation } from 'react-router'
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  const location = useLocation()
   const { search } = useLocation();
 
   useEffect(() => {

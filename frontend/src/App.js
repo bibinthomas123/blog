@@ -3,8 +3,8 @@ import Signup from "./pages/signup.js";
 import Write from "./pages/Write/write";
 import Login from  "./pages/login"
 import Footer from "./components/footer/footer"
-// import Navigation from "./components/navigation.js"
 import {  BrowserRouter,Route,Routes,Navigate} from "react-router-dom";
+import About from "./components/about/about.jsx";
 import Navbarexp from "./components/navbar/test";
 import Single from "./pages/single_page/single.jsx";
 import Settings from "./pages/settings.jsx";
@@ -23,6 +23,7 @@ function App() {
         <Route path="/viewpage/:viewpageId" element={<Single />} />
         <Route path="/addPost" element={user ? (<Write/>) : (<Navigate  to={"/login"}/>)} />
         <Route path="/settings" element={user ? (<Settings/>) : (<Navigate  to={"/login"}/>)} />
+        <Route path="/about" element={user ? (<About/>) : (<Navigate  to={"/login"}/>)} />
       </Routes>  
     
     

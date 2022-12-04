@@ -1,4 +1,4 @@
-import { React, useState,useContext,useRef } from "react";
+import { React,useContext,useRef } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./login.css";
@@ -6,9 +6,6 @@ import axios from "axios";
 import { Context } from "../context/context";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const userRef = useRef();
   const passRef = useRef();
 
@@ -32,8 +29,7 @@ export default function Login() {
       });
     }catch(error){
       dispatch({
-        type: "LOGIN_FAILURE",
-      
+        type: "LOGIN_FAILURE",   
 
       });
     }
@@ -52,12 +48,9 @@ export default function Login() {
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter unsername"
+                placeholder="Enter Username"
                 ref={userRef}
               />
-              {/* <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text> */}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">

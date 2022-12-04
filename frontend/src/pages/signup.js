@@ -20,7 +20,7 @@ export default function Signup() {
         password
       });
       // console.log(res)
-      res.data && window.location.replace("/login");//once signed up redirect to the login page 
+      res.data && window.location.replace("/");//once signed up redirect to the login page 
     } catch (err) {
       setError(true);
     }

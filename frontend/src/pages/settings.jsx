@@ -17,6 +17,7 @@ export default function Settings() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "UPDATE_START" });
+    
     const updatedUser = {
       userId: user._id,
       username,
@@ -41,6 +42,7 @@ export default function Settings() {
       dispatch({ type: "UPDATE_FAILURE" });
     }
   };
+
 
 
 
@@ -70,9 +72,9 @@ export default function Settings() {
                 <div class="col-md-3 text-center mb-5">
                   <div class="avatar avatar-xl position-relative">
                     <img
-                      src={file ?URL.createObjectURL(file):PF+user.profilePic}
+                      src={file ?URL.createObjectURL(file):PF+user.profilePic} style={{ width:350,height:350}}
                       alt="..."
-                      class="avatar-img rounded-circle"
+                      class="avatar-img rounded-circle p-4"
                     />
           
                     <div className="position-absolute bottom-0 end-0 translate-middle  ">
@@ -127,8 +129,10 @@ export default function Settings() {
                     id="firstname"
                     class="form-control"  
                     placeholder={user.username}
+                    autocomplete="off"
+                    required
                     onChange={e=>setUsername(e.target.value)}
-                  /> 
+                  />
                 </div>
                 
               </div>
@@ -139,10 +143,12 @@ export default function Settings() {
                   class="form-control"
                   id="inputEmail4"
                   placeholder={user.email}
+                  autocomplete="off"
+                  required
                   onChange={e=>setEmail(e.target.value)}
                 />
               </div>
-              <div class="form-group">
+              {/* <div class="form-group">
                 <label for="inputAddress5">Address</label>
                 <input
                   type="text"
@@ -150,16 +156,16 @@ export default function Settings() {
                   id="inputAddress5"
                   placeholder="P.O. Box 464, 5975 Eget Avenue"
                 />
-              </div>
+              </div> */}
               <div class="form-row">
              
-                <div class="form-group col-md-4">
+                {/* <div class="form-group col-md-4">
                   <label for="inputState5">State</label>
                   <select id="inputState5" class="form-control">
                     <option selected="">Choose...</option>
                     <option>...</option>
                   </select>
-                </div>
+                </div> */}
                
               </div>
               <hr class="my-4" />
@@ -190,6 +196,8 @@ export default function Settings() {
                       type="password"
                       className="form-control"
                       id="inputPassword6"
+                      required
+                      placeholder={user.password}
                     //   onChange={e=>userpassword2(e.target.value)}
                     onChange={e=>setPassword(e.target.value)}
                     />
