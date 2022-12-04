@@ -47,7 +47,7 @@ export default function Settings() {
 
 
   return (
-    <div className="container">
+    <div className="container pb-5">
       <div className="row justify-content-center">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
           <h2 class="h3 mb-4 page-title">Settings</h2>
@@ -72,14 +72,14 @@ export default function Settings() {
                 <div class="col-md-3 text-center mb-5">
                   <div class="avatar avatar-xl position-relative">
                     <img
-                      src={file ?URL.createObjectURL(file):PF+user.profilePic} style={{ width:350,height:350}}
-                      alt="..."
+                      src={file ?URL.createObjectURL(file):PF+user.profilePic} style={{ backgroundSize:"contain",width:250,height:250}}
+                      alt="profic pic"
                       class="avatar-img rounded-circle p-4"
                     />
           
                     <div className="position-absolute bottom-0 end-0 translate-middle  ">
                       <label htmlFor="fileInput">
-                        <i className="settingsPPIcon far fa-duotone border rounded-circle pointer ml-2 p-2 fa-user"></i>
+                        <i className="settingsPPIcon far fa-duotone border bg-black text-light rounded-circle pointer ml-2 p-2 fa-user"></i>
                         
                       </label>
                       <input
@@ -92,16 +92,17 @@ export default function Settings() {
                   </div>
                 </div>
                 <div class="col">
-                  <div class="row align-items-center">
-                    <div class="col-md-7">
-                      <h4 class="mb-1 bg-light">{user.username}</h4>
+                  <div class="row p-5">
+                    <div class="col-md-8">
+                      <h6 class="">Username</h6>
+                      <h4 class="mb-1 ">{user.username}</h4>
                       <p class="small mb-3">
-                        <span class="badge badge-dark">New York, USA</span>
+                        {/* <span class="badge badge-dark">New York, USA</span> */}
                       </p>
                     </div>
                   </div>
                   <div class="row mb-4">
-                    <div class="col-md-7">
+                    {/* <div class="col-md-8">
                       <p class="text-muted">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Mauris blandit nisl ullamcorper, rutrum metus in, congue
@@ -109,13 +110,17 @@ export default function Settings() {
                         quam, malesuada vitae risus at, pretium blandit sapien.
                         {user.bio}
                       </p>
-                    </div>
+                    </div> */}
                     <div class="col">
-                      <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p>
+                      {/* <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p> */}
                       <p class="small mb-0 text-muted">
-                        P.O. Box 464, 5975 Eget Avenue
+                      {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Mauris blandit nisl ullamcorper, rutrum metus in, congue
+                        lectus. In hac habitasse platea dictumst. Cras urna
+                        quam, malesuada vitae risus at, pretium blandit sapien. */}
+                        {user.bio}
                       </p>
-                      <p class="small mb-0 text-muted">(537) 315-1481</p>
+                      {/* <p class="small mb-0 text-muted">(537) 315-1481</p> */}
                     </div>
                   </div>
                 </div>
@@ -123,10 +128,10 @@ export default function Settings() {
               <hr class="my-4" />
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="firstname">Full name</label>
+                  <label for="firstname">Username</label>
                   <input
                     type="text"
-                    id="firstname"
+                    id="username"
                     class="form-control"  
                     placeholder={user.username}
                     autocomplete="off"
@@ -197,7 +202,7 @@ export default function Settings() {
                       className="form-control"
                       id="inputPassword6"
                       required
-                      placeholder={user.password}
+                      placeholder="Confirm password"
                     //   onChange={e=>userpassword2(e.target.value)}
                     onChange={e=>setPassword(e.target.value)}
                     />

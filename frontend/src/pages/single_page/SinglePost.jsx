@@ -48,7 +48,7 @@ export default function SinglePost() {
   };
 
   return (
-    <div className="singlePost">
+    <div className="singlePost px-5">
       <div className="singlePostWrapper">
         {post.photo && (
           <img src={PF + post.photo} alt="" className="singlePostImg" />

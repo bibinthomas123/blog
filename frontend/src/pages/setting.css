@@ -38,3 +38,7 @@ img {
     top:-5px;
     right:10px;
 }
+.settingsPPIcon:hover{
+    cursor: pointer;
+
+}

@@ -1,5 +1,5 @@
-import Home from "./pages/home.js"
-import Signup from "./pages/signup.js";
+import Home from "./pages/home.jsx"
+import Signup from "./pages/signup.jsx";
 import Write from "./pages/Write/write";
 import Login from  "./pages/login"
 import Footer from "./components/footer/footer"

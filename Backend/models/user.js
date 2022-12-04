@@ -15,9 +15,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    
+
     profilePic: {
       type: String,
-      default: "",
+      default: "https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png",
     },
   },
   { timestamps: true }
