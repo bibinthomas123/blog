@@ -15,6 +15,8 @@ export default function SinglePost() {
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
+  // console.log(user)
+
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
@@ -46,7 +48,7 @@ export default function SinglePost() {
   };
 
   return (
-    <div className="singlePost">
+    <div className="singlePost px-5">
       <div className="singlePostWrapper">
         {post.photo && (
           <img src={PF + post.photo} alt="" className="singlePostImg" />

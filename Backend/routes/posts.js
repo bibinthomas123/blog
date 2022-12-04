@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const User = require("../models/user");
 const Post = require("../models/post");
+const User = require("../models/user")
 
 //create
 router.post("/", async (req, res) => {
@@ -87,7 +87,7 @@ router.get("/", async (req, res) => {
         },
       });
     } else {
-      posts = await Post.find().sort({"createdAt":-1}); //getting data in reverse order 
+      posts = await Post.find().sort({ createdAt: -1 }); //getting data in reverse order
     }
     res.status(200).json(posts);
   } catch (error) {

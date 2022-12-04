@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Context } from "../../context/context";
-import "../../pages/single_page/singlepost.css"
-// import "./write.css";
+import "../../pages/single_page/singlepost.css";
+
+import "./write.css";
 // import Image from "react-bootstrap/Image"
 
 export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [cat, setCat] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
 
@@ -35,14 +37,23 @@ export default function Write() {
   };
   return (
     <>
-      <div className="write">
+      <div className="write my-4 min-vh-100 ">
         {file && (
-       <div >
-       <img src={URL.createObjectURL(file)} alt="" style={{borderRadius:20}} className="singlePostImg px-2 my-5" />
-      </div>
-      )}
-        
-        <form action="post" onSubmit={handleSubmit}>
+          <div>
+            <img
+              src={URL.createObjectURL(file)}
+              alt="cover image"
+              style={{ borderRadius: 20 }}
+              className="singlePostImg px-2 my-5"
+            />
+          </div>
+        )}
+
+        <form
+          action="post"
+          onSubmit={handleSubmit}
+          enctype="multipart/form-data"
+        >
           <section class="container">
             <div class="input-group">
               {/* add options here to select from the category list  */}
@@ -51,7 +62,7 @@ export default function Write() {
                   class="form-control mb-2"
                   type="file"
                   id="formFile"
-                  onChange={(e) => setFile(e.target.files[0])}
+                  onBlur={(e) => setFile(e.target.files[0])}
                 />
               </div>
             </div>
@@ -61,26 +72,26 @@ export default function Write() {
               <div class="input-group input-group-lg parent ">
                 <input
                   type="text"
-                  className="  form-control"
-                  aria-label="Sizing example input"
+                  className="  form-control "
                   aria-describedby="inputGroup-sizing-lg"
                   placeholder="Title"
-                  onChange={(e) => setTitle(e.target.value)}
+                  onBlur={(e) => setTitle(e.target.value)}
                 ></input>
               </div>
             </div>
           </section>
           <section class="container">
-            <div class="input-group">
-              <textarea
-                class="form-control textwrite"
-                rows="50"
+            <div class="input-group ">
+              <textarea 
+                className="form-control  bg-gray-200  h-100 w-full mt-0  "
+                rows="7"
+                
                 type="textarea"
                 placeholder="Tell us your story.. :)"
-                onChange={(e) => setDesc(e.target.value)}
+                onBlur={(e) => setDesc(e.target.value)}
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary my-3">
+            <button type="submit" class="btn btn-primary my-3 ">
               Submit
             </button>
           </section>

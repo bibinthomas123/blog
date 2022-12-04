@@ -33,3 +33,12 @@ img {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+.icons{
+    top:-5px;
+    right:10px;
+}
+.settingsPPIcon:hover{
+    cursor: pointer;
+
+}
