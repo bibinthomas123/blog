@@ -9,6 +9,7 @@ export default function Settings() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [about, setAbout] = useState("");
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
@@ -23,6 +24,8 @@ export default function Settings() {
       username,
       email,
       password,
+      about
+      
     };
     if (file) {
       const data = new FormData();
@@ -118,7 +121,7 @@ export default function Settings() {
                         Mauris blandit nisl ullamcorper, rutrum metus in, congue
                         lectus. In hac habitasse platea dictumst. Cras urna
                         quam, malesuada vitae risus at, pretium blandit sapien. */}
-                        {user.bio}
+                        {user.about}
                       </p>
                       {/* <p class="small mb-0 text-muted">(537) 315-1481</p> */}
                     </div>
@@ -137,6 +140,21 @@ export default function Settings() {
                     autocomplete="off"
                     required
                     onChange={e=>setUsername(e.target.value)}
+                  />
+                </div>
+                
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="firstname">About Me</label>
+                  <input
+                    type="text"
+                    id="about"
+                    class="form-control"  
+                    placeholder="About me"
+                    autocomplete="off"
+                    // required
+                    onChange={e=>setAbout(e.target.value)}
                   />
                 </div>
                 
@@ -162,17 +180,7 @@ export default function Settings() {
                   placeholder="P.O. Box 464, 5975 Eget Avenue"
                 />
               </div> */}
-              <div class="form-row">
-             
-                {/* <div class="form-group col-md-4">
-                  <label for="inputState5">State</label>
-                  <select id="inputState5" class="form-control">
-                    <option selected="">Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div> */}
-               
-              </div>
+
               <hr class="my-4" />
               <div class="row mb-4">
                 <div class="col-md-6">

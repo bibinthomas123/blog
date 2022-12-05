@@ -15,7 +15,14 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    
+    about:{
+      type:String,
+      required:false
+    },
+    following:{
+      type: Array,
+      required:false
+    },
 
     profilePic: {
       type: String,

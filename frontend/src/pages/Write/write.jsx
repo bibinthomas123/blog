@@ -9,7 +9,6 @@ import "./write.css";
 export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [cat, setCat] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
 
@@ -42,7 +41,7 @@ export default function Write() {
           <div>
             <img
               src={URL.createObjectURL(file)}
-              alt="cover image"
+              alt="cover"
               style={{ borderRadius: 20 }}
               className="singlePostImg px-2 my-5"
             />
