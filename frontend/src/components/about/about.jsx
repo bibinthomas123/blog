@@ -1,123 +1,116 @@
-import React from 'react'
-
+import React from "react";
+import "./about.css";
+import { useContext, useState, useEffect } from "react";
+import { Context } from "../../context/context";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useLocation } from "react-router";
 
 function About() {
+  const { user } = useContext(Context);
+  const [posts, setPosts] = useState([]);
+  const PF = "http://localhost:5000/images/";
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get("posts?user=ADMIN");
+      setPosts(res.data);
+      console.log(res.data);
+      
+    };
+    fetchPosts();
+  }, [search]);
+
   return (
-    <> 
-   
-
-<div className="bg-light">
-  <div className="container py-5">
-    <div className="row h-100 align-items-center py-5">
-      <div className="col-lg-6">
-        <h1 className="display-4">About us page</h1>
-        <p className="lead text-muted mb-0">Create a minimal about us page using Bootstrap 4.</p>
-        <p className="lead text-muted">Snippet by <a href="https://bootstrapious.com/snippets" className="text-muted"> 
-                    <u>Bootstrapious</u></a>
-        </p>
-      </div>
-      <div className="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" className="img-fluid"/></div>
-    </div>
-  </div>
-</div>
-
-<div className="bg-white py-5">
-  <div className="container py-5">
-    <div className="row align-items-center mb-5">
-      <div className="col-lg-6 order-2 order-lg-1"><i className="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
-        <h2 className="font-weight-light">Lorem ipsum dolor sit amet</h2>
-        <p className="font-italic text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" className="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
-      </div>
-      <div className="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="https://bootstrapious.com/i/snippets/sn-about/img-1.jpg" alt="" className="img-fluid mb-4 mb-lg-0"/></div>
-    </div>
-    <div className="row align-items-center">
-      <div className="col-lg-5 px-5 mx-auto"><img src="https://bootstrapious.com/i/snippets/sn-about/img-2.jpg" alt="" className="img-fluid mb-4 mb-lg-0"/></div>
-      <div className="col-lg-6"><i className="fa fa-leaf fa-2x mb-3 text-primary"></i>
-        <h2 className="font-weight-light">Lorem ipsum dolor sit amet</h2>
-        <p className="font-italic text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" className="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div className="bg-light py-5">
-  <div className="container py-5">
-    <div className="row mb-4">
-      <div className="col-lg-5">
-        <h2 className="display-4 font-weight-light">Our team</h2>
-        <p className="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-    </div>
-
-    <div className="row text-center">
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-4.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">Manuella Nevoresky</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
+    <>
+      <div className="row py-5 px-4 body">
+        {" "}
+        <div className="col-md-5 mx-auto">
+          {" "}
+          {/* Profile widget */}
+          <div className="bg-white shadow rounded overflow-hidden">
+            {" "}
+            <div className="px-4 pt-0 pb-4 cover">
+              {" "}
+              <div className="media align-items-end profile-head">
+                {" "}
+                <div className="profile mr-3">
+                  <img
+                    src={PF + user.profilePic}
+                    style={{
+                      backgroundSize: "contain",
+                      width: 200,
+                      height: 200,
+                    }}
+                    alt="..."
+                    width={130}
+                    className="rounded mb-2 img-thumbnail"
+                  />
+                  <a
+                    href="/settings"
+                    className="btn btn-outline-dark text-white btn-sm btn-block"
+                  >
+                    Edit profile
+                  </a>
+                </div>
+                <div className="media-body mb-5 text-white">
+                  <h4 className="mt-0 mb-0">{user.username}</h4>{" "}
+                  <p className="small mb-4">
+                    <i className="fas mr-2" />
+                    {/* New York */}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-light p-4 d-flex justify-content-end text-center">
+              <ul className="list-inline mb-0">
+                <li className="list-inline-item pr-2">
+                  <Link to={`/?user=${user.username}`} className="link">
+                  <h5 className="font-weight-bold mb-0 d-block">
+                    {posts.length}
+                  </h5>
+                  <small className="text-muted">
+                    {/* <i className="fas fa-image mr-1" /> */}
+                    Posts
+                  </small>
+                  </Link>
+                </li>
+                <li className="list-inline-item">
+                  <h5 className="font-weight-bold mb-0 d-block">745</h5>
+                  <small className="text-muted">
+                    {/* <i className="fas fa-user mr-1" /> */}
+                    Followers
+                  </small>
+                </li>
+                <li className="list-inline-item">
+                  <h5 className="font-weight-bold mb-0 d-block">340</h5>
+                  <small className="text-muted">
+                    {/* <i className="fas fa-user mr-1" /> */}
+                    Following
+                  </small>
+                </li>
+              </ul>
+            </div>
+            <div className="px-4 py-3">
+              <h5 className="mb-0">About</h5>{" "}
+              <div className="p-4 rounded shadow-sm bg-light">
+                <p className="font-italic mb-0">{user.about}</p>{" "}
+                {/* <p className="font-italic mb-0">Lives in New York</p>{" "}
+                <p className="font-italic mb-0">Photographer</p>{" "} */}
+              </div>
+            </div>
+            <div className="py-4 px-4">
+              <div className="d-flex align-items-center justify-content-between mb-3">
+               
+              </div>
+            
+            </div>
+          </div>
         </div>
       </div>
-      {/* <!-- End--> */}
-
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-3.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">Samuel Hardy</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      {/* <!-- End--> */}
-
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-2.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">Tom Sunderland</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      {/* <!-- End--> */}
-
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-1.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">John Tarly</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    
-
-    </div>
-  </div>
-</div>
-
-
-{/* <footer className="bg-light pb-5">
-  <div className="container text-center">
-    <p className="font-italic text-muted mb-0">&copy; Copyrights Company.com All rights reserved.</p>
-  </div>
-</footer> */}
-</>
-  )
+    </>
+  );
 }
 
-export default About
+export default About;

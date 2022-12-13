@@ -115,7 +115,7 @@ export default function Settings() {
                       </p>
                     </div> */}
                     <div class="col">
-                      {/* <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p> */}
+                      <h4 class=" mb-0 ">About</h4>
                       <p class="small mb-0 text-muted">
                       {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Mauris blandit nisl ullamcorper, rutrum metus in, congue

@@ -37,7 +37,7 @@ function Navbarexp() {
            <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/about">Profile</Nav.Link>
             <Nav.Link href="/addpost">Write</Nav.Link>
             <Nav.Link href="/login"onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
