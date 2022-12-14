@@ -14,7 +14,7 @@ function About() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("posts?user=ADMIN");
+      const res = await axios.get("posts?user="+user.username);
       setPosts(res.data);
       console.log(res.data);
       // console.log(posts[0]._id)
@@ -43,13 +43,14 @@ function About() {
                       className="img-fluid img-thumbnail mt-4 mb-2"
                       style={{ width: 150, zIndex: 1 }}
                     />
-                    <button
+                    <a
                       type="button"
                       className="btn btn-outline-dark"
                       style={{ zIndex: 1 }}
+                      href="/settings"
                     >
                       Edit profile
-                    </button>
+                    </a>
                   </div>
                   <div className="ms-3" style={{ marginTop: 130 }}>
                     <h5>{user.username}</h5>
