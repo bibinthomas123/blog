@@ -61,7 +61,6 @@ export default function Settings() {
                   class="nav-link active"
                   id="home-tab"
                   data-toggle="tab"
-                  href="#home"
                   role="tab"
                   aria-controls="home"
                   aria-selected="false"
@@ -115,7 +114,7 @@ export default function Settings() {
                       </p>
                     </div> */}
                     <div class="col">
-                      <h4 class=" mb-0 ">About</h4>
+                      <p>About</p>
                       <p class="small mb-0 text-muted">
                       {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Mauris blandit nisl ullamcorper, rutrum metus in, congue
@@ -243,3 +242,4 @@ export default function Settings() {
     </div>
   );
 }
+

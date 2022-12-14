@@ -17,98 +17,95 @@ function About() {
       const res = await axios.get("posts?user=ADMIN");
       setPosts(res.data);
       console.log(res.data);
-      
+      // console.log(posts[0]._id)
     };
     fetchPosts();
   }, [search]);
 
   return (
     <>
-      <div className="row py-5 px-4 body">
-        {" "}
-        <div className="col-md-5 mx-auto">
-          {" "}
-          {/* Profile widget */}
-          <div className="bg-white shadow rounded overflow-hidden">
-            {" "}
-            <div className="px-4 pt-0 pb-4 cover">
-              {" "}
-              <div className="media align-items-end profile-head">
-                {" "}
-                <div className="profile mr-3">
-                  <img
-                    src={PF + user.profilePic}
-                    style={{
-                      backgroundSize: "contain",
-                      width: 200,
-                      height: 200,
-                    }}
-                    alt="..."
-                    width={130}
-                    className="rounded mb-2 img-thumbnail"
-                  />
-                  <a
-                    href="/settings"
-                    className="btn btn-outline-dark text-white btn-sm btn-block"
+      <section className="h-100 gradient-custom-2">
+        <div className="container py-5 h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col col-lg-9 col-xl-7">
+              <div className="card">
+                <div
+                  className="rounded-top text-white d-flex flex-row"
+                  style={{ backgroundColor: "#000", height: 200 }}
+                >
+                  <div
+                    className="ms-4 mt-5 d-flex flex-column"
+                    style={{ width: 150 }}
                   >
-                    Edit profile
-                  </a>
+                    <img
+                      src={PF + user.profilePic}
+                      alt="Generic placeholder image"
+                      className="img-fluid img-thumbnail mt-4 mb-2"
+                      style={{ width: 150, zIndex: 1 }}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-outline-dark"
+                      style={{ zIndex: 1 }}
+                    >
+                      Edit profile
+                    </button>
+                  </div>
+                  <div className="ms-3" style={{ marginTop: 130 }}>
+                    <h5>{user.username}</h5>
+                  </div>
                 </div>
-                <div className="media-body mb-5 text-white">
-                  <h4 className="mt-0 mb-0">{user.username}</h4>{" "}
-                  <p className="small mb-4">
-                    <i className="fas mr-2" />
-                    {/* New York */}
-                  </p>
+                <div
+                  className="p-4 text-black"
+                  style={{ backgroundColor: "#f8f9fa" }}
+                >
+                  <div className="d-flex justify-content-end text-center py-1">
+                   <Link className="link" to={`/?user=${user.username}`}>
+                   <div>
+                      <p className="mb-1 h5">{posts.length}</p>
+                      <p className="small text-muted mb-0">Posts</p>
+                    </div>
+                   </Link>
+                    <div className="px-3">
+                      <p className="mb-1 h5">1026</p>
+                      <p className="small text-muted mb-0">Followers</p>
+                    </div>
+                    <div>
+                      <p className="mb-1 h5">478</p>
+                      <p className="small text-muted mb-0">Following</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-body p-4 text-black">
+                  <div className="mb-5">
+                    <p className="lead fw-normal mb-1">About</p>
+                    <div className="p-4" style={{ backgroundColor: "#f8f9fa" }}>
+                      <p className="font-italic mb-1">{user.about}</p>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <p className="lead fw-normal mb-0">Recent Posts</p>
+                    <p className="mb-0">
+                      <Link to={`/?user=${user.username}`} className="text-muted">
+                        Show all
+                      </Link>
+                    </p>
+                  </div>
+                  <div className="row g-2 bg-light p-2 text-capitalize">
+                    {posts.map((i) => {
+                      return(                        
+                        <a href={`/viewpage/${i._id}`} style={{fontWeight:600,paddingTop:"5px"}} className="link">{i.title}</a>
+                        )
+                      })}
+                    
+                  </div>
+                 
                 </div>
               </div>
-            </div>
-            <div className="bg-light p-4 d-flex justify-content-end text-center">
-              <ul className="list-inline mb-0">
-                <li className="list-inline-item pr-2">
-                  <Link to={`/?user=${user.username}`} className="link">
-                  <h5 className="font-weight-bold mb-0 d-block">
-                    {posts.length}
-                  </h5>
-                  <small className="text-muted">
-                    {/* <i className="fas fa-image mr-1" /> */}
-                    Posts
-                  </small>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <h5 className="font-weight-bold mb-0 d-block">745</h5>
-                  <small className="text-muted">
-                    {/* <i className="fas fa-user mr-1" /> */}
-                    Followers
-                  </small>
-                </li>
-                <li className="list-inline-item">
-                  <h5 className="font-weight-bold mb-0 d-block">340</h5>
-                  <small className="text-muted">
-                    {/* <i className="fas fa-user mr-1" /> */}
-                    Following
-                  </small>
-                </li>
-              </ul>
-            </div>
-            <div className="px-4 py-3">
-              <h5 className="mb-0">About</h5>{" "}
-              <div className="p-4 rounded shadow-sm bg-light">
-                <p className="font-italic mb-0">{user.about}</p>{" "}
-                {/* <p className="font-italic mb-0">Lives in New York</p>{" "}
-                <p className="font-italic mb-0">Photographer</p>{" "} */}
-              </div>
-            </div>
-            <div className="py-4 px-4">
-              <div className="d-flex align-items-center justify-content-between mb-3">
-               
-              </div>
-            
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
