@@ -20,7 +20,7 @@ function Navbarexp() {
 
   }
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" sticky="top" variant="light"  className="justify-content-center">
+    <Navbar collapseOnSelect expand="lg" bg="black" sticky="top" variant="dark"  className="justify-content-center">
       <Container >
       <Navbar.Brand href="/">
             <img
