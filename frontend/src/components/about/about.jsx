@@ -5,6 +5,7 @@ import { Context } from "../../context/context";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router";
+import { createApi } from "unsplash-js";
 
 function About() {
   const { user } = useContext(Context);
@@ -22,6 +23,32 @@ function About() {
     fetchPosts();
   }, [search]);
 
+  //calling unsplash api for images
+
+  const [image, setImage] = useState([]);
+  useEffect(() => {
+    const unsplash = createApi({
+      accessKey: "phSB4UX9ouCgPF7cNWvLcUzU9YIBC3AVhL3cfqTlHIY",
+      // `fetch` options to be sent with every request
+      headers: { "X-Custom-Header": "foo" },
+    });
+    const searchPhotos = async (e) => {
+      // e.preventDefault();
+      unsplash.search
+        .getPhotos({
+          query: "patterns",
+          page: 1,
+          perPage: 100,
+          orientation: "landscape",
+        })
+        .then((reponse) => {
+          setImage(reponse.response.results[Math.floor(Math.random() * 10)].urls.regular);
+        });
+    };
+    console.log(image)
+
+    searchPhotos();
+  }, []);
   return (
     <>
       <section className="h-100 gradient-custom-2">
@@ -31,7 +58,7 @@ function About() {
               <div className="card">
                 <div
                   className="rounded-top text-white d-flex flex-row"
-                  style={{ backgroundColor: "#000", height: 200 }}
+                   style={{ backgroundImage: `url(${image})` , height: 200 }}
                 >
                   <div
                     className="ms-4 mt-5 d-flex flex-column"

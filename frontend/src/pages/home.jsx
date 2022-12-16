@@ -24,8 +24,8 @@ export default function Home() {
    <div className="home">
    <Container>
    <Row className='py-5'>
-        <Col md={9}>  <Posts posts={posts} /></Col>
-        <Col md={3}> <Sidebar /></Col>
+        <Col md={8}>  <Posts posts={posts} /></Col>
+        <Col md={4}> <Sidebar /></Col>
       </Row>
    </Container>
    </div>

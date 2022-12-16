@@ -12,7 +12,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp:4 ;
   -webkit-box-orient: vertical;
 }
 .title{
@@ -30,3 +30,14 @@
     /* margin: 0px 25px 40px 25px; */
     margin:0px 10px 20px 0;
   }
+
+
+  .card-img{
+    width:50%;
+    height:50%;
+    /* object-fit:cover; */
+    border-bottom-right-radius:0px;
+}
+.card p{
+  line-height: 1.4em;
+}

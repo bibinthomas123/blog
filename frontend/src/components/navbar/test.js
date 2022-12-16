@@ -42,6 +42,7 @@ function Navbarexp() {
             <Nav.Link href="/login"onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
           <Nav className="ms-auto" >
+          <Navbar.Text className='text-center'>welcome {user.username}</Navbar.Text>
           <Nav.Link href="/settings" ><img src={PF+user.profilePic} style={{ width: 40 ,height:40}} className="rounded-circle" alt="profile" /></Nav.Link>
             <Nav.Link eventKey={2} href="#memes" className="d-flex align-items-center justify-content-center">
             <i className="text-wrap mx-2 fa-sharp fa-solid fa-magnifying-glass"></i>

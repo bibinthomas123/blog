@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createApi } from "unsplash-js";
 
 function Header() {
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState();
   useEffect(() => {
     const unsplash = createApi({
       accessKey: "phSB4UX9ouCgPF7cNWvLcUzU9YIBC3AVhL3cfqTlHIY",
@@ -17,11 +17,11 @@ function Header() {
         .getPhotos({
           query: "mountain",
           page: 1,
-          perPage: 1,
+          perPage: 100,
           orientation: "landscape",
         })
         .then((reponse) => {
-          setImage(reponse.response.results);
+          setImage(reponse.response.results[Math.floor(Math.random() * 10)].urls.full);
         });
     };
 
@@ -29,12 +29,13 @@ function Header() {
   }, []);
   return (
     <div className="container-fluid w-100 ">
-       {image.map((pic) => ( 
+  
         <div
         className="p-5 text-center bg-image"
         style={{
-          backgroundImage:`url(${pic.urls.full})`,
+          backgroundImage:`url(${image})`,
           height: 620,
+           boxShadow: "inset 0 0 0 2000px rgba(0, 0, t0, 0.3)"
         }}
       >
         <div className="container h-100 d-flex justify-content-center align-items-center">
@@ -46,7 +47,7 @@ function Header() {
           </div>
         </div>
       </div>
-       ))}
+ 
     </div>
   );
 }
