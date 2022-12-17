@@ -17,7 +17,7 @@ export default function Post({ post }) {
   return (
    
     <div className="container mb-3">
-      <div className="card h-100">
+      <div className="card h-100 border-top  border-dark">
         <div className="row g-0">
           <div className="col-6 col-md-5">
             <img

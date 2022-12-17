@@ -15,7 +15,7 @@ function Header() {
       // e.preventDefault();
       unsplash.search
         .getPhotos({
-          query: "mountain",
+          query: "nature",
           page: 1,
           perPage: 100,
           orientation: "landscape",
@@ -31,11 +31,11 @@ function Header() {
     <div className="container-fluid w-100 ">
   
         <div
-        className="p-5 text-center bg-image"
+        className="p-5 m-0 text-center bg-image"
         style={{
           backgroundImage:`url(${image})`,
           height: 620,
-           boxShadow: "inset 0 0 0 2000px rgba(0, 0, t0, 0.3)"
+           boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)"
         }}
       >
         <div className="container h-100 d-flex justify-content-center align-items-center">

@@ -28,7 +28,7 @@ function Navbarexp() {
               style={{ width: 32, marginRight: "13px" }}
               alt="wett"
             />
-            The Blog
+            UniBlog
           </Navbar.Brand>
         {
           user ? (

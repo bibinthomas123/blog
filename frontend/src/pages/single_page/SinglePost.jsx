@@ -94,7 +94,8 @@ export default function SinglePost() {
           <span className="singlePostAuthor   position-relative ">
             Author:
             <Link to={`/?user=${post.username}`} className="link active">
-              <b> {post.username}</b>
+              
+              <img src={PF + user.profilePic} alt="" height={"35px"} /> <p> {post.username}</p>
             </Link>
           </span>
           <span className="singlePostDate">
@@ -103,7 +104,8 @@ export default function SinglePost() {
         </div>
         {updateMode ? (
           <textarea
-            className="singlePostDescInput"
+            className="form-control singlePostDescInput  bg-gray-200  h-100 w-full mt-0  "
+            rows="8"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
           />

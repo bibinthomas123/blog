@@ -2,7 +2,6 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Context } from "../../context/context";
 import "../../pages/single_page/singlepost.css";
-import MyEditor from "./editor"
 
 import "./write.css";
 // import Image from "react-bootstrap/Image"
@@ -95,7 +94,6 @@ export default function Write() {
               Submit
             </button>
           </section>
-          <MyEditor/>
         </form>
       </div>
     </>
