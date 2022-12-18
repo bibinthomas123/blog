@@ -9,30 +9,42 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [passwordErr,setPasswordErr]= useState(false)
+  //regex
+  // const validEmail = new RegExp(    "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"  );
+  const validPassword = new RegExp("^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();//preventing refresh on submit
+    e.preventDefault(); //preventing refresh on submit
     setError(false);
-    try {
-      const res = await axios.post("/auth/signup", {
-        username,
-        email,
-        password,
-        
-      });
-      // console.log(res)
-      res.data && window.location.replace("/");//once signed up redirect to the login page 
-    } catch (err) {
-      setError(true);
+    if (!validPassword.test(password)) {
+      setPasswordErr(true)
+
+      // console.log(error)
+
+    } else {
+      setPasswordErr(true)
+      setError(true)
+      try {
+        const res = await axios.post("/auth/signup", {
+          username,
+          email,
+          password,
+        });
+        // console.log(res)
+        res.data && window.location.replace("/"); //once signed up redirect to the login page
+      } catch (err) {
+        setError(true);
+      }
     }
   };
 
   return (
-    <Container>
+    <Container className="bg-light mt-4 rounded shadow  border-box">
       <Row>
         <Col
-          md={7}
-          className="d-flex align-items-center justify-content-center"
+          md={6}
+          className="d-flex align-items-center borders justify-content-center"
         >
           <Form className="login__form" onSubmit={handleSubmit}>
             <h1 className="text-center">Signup</h1>
@@ -64,8 +76,21 @@ export default function Signup() {
             </Form.Group>
             <Button variant="primary" type="submit">
               Login
-            </Button><br></br>
-            {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong! try again</span>}<br></br>
+            </Button>
+            <br></br>
+
+            {/* error */}
+            {error && (
+              <span style={{ color: "red", marginTop: "10px" }}>
+                User already Exists !!
+              </span>
+            )}
+             {passwordErr && (
+              <span style={{ color: "red", marginTop: "10px" }}>
+                please use a strong password !!
+              </span>
+            )}
+            <br></br>
             <div className="py-4">
               <p>
                 Already have a account ? <Link to="/login">Login </Link>
@@ -74,9 +99,8 @@ export default function Signup() {
           </Form>
         </Col>
 
-        <Col md={5} className="login_bg--container"></Col>
+        <Col md={6} className="login_bg--container"></Col>
       </Row>
-     
     </Container>
   );
 }

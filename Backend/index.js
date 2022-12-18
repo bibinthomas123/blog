@@ -8,6 +8,7 @@ const postRoute = require("./routes/posts");
 const CatRoute = require("./routes/category");
 const multer = require("multer"); //storage used to store the images
 const path = require("path");
+const readingTime = require("reading-time")
 
 env.config();
 app.use(express.json());

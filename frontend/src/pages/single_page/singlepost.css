@@ -19,14 +19,15 @@
 
 .singlePostTitle {
   text-align: center;
-  margin: 10px;
-  font-family: "Lora", serif;
+  margin: 15px;
+  font-family: "Montserrat", serif;
+  text-transform: capitalize;
   font-size: 28px;
 }
 
 .singlePostTitleInput {
   margin: 10px;
-  font-family: "Lora", serif;
+  font-family: "Montserrat", serif;
   font-size: 28px;
   text-align: center;
   border: none;
@@ -69,6 +70,7 @@
   color: #666;
   font-size: 18px;
   line-height: 25px;
+  font-family: 'Libre Baskerville',Arial, Helvetica, sans-serif;
 }
 
 .singlePostDesc::first-letter {
@@ -98,3 +100,4 @@
   align-self: flex-start;
   margin-top: 20px;
 }
+

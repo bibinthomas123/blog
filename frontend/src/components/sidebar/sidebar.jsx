@@ -8,8 +8,9 @@ export default function Sidebar() {
 
   useEffect(() => {
     const getCats = async () => {
-      const res = await axios.get("/categories");
-      setCats(res.data);
+      const res = await axios.get("/users/");
+      console.log("res",res)
+      setCats(res.data)
     };
     getCats();
   }, []);
@@ -17,10 +18,7 @@ export default function Sidebar() {
     <div className="sidebar">
       <div className="sidebarItem">
         <span className="sidebarTitle">ABOUT ME</span>
-        <img
-          src="https://i.pinimg.com/236x/1e/3f/58/1e3f587572a7a7b20bbf1828595a1786--holiday-party-themes-holiday-gift-guide.jpg"
-          alt=""
-        />
+       
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate qui
           necessitatibus nostrum illum reprehenderit.
@@ -30,8 +28,8 @@ export default function Sidebar() {
         <span className="sidebarTitle">Top Users</span>
         <ul className="sidebarList">
           {cats.map((c) => (
-            <Link to={`/?cat=${c.name}`} className="link">
-            <li className="sidebarListItem">{c.name}</li>
+            <Link to={`/?user=${c.username}`} className="link">
+            <li className="sidebarListItem">{c.username}</li>
             </Link>
           ))}
         </ul>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import DOMPurify from "dompurify";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
@@ -14,8 +15,20 @@ export default function SinglePost() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
+  const [profile, setProfile] = useState([]);
+  const { search } = useLocation();
 
   // console.log(user)
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get("/posts?user=" + post.username);
+      setProfile(res.data);
+      // console.log()
+      console.log(res.data);
+      console.log(profile);
+    };
+    fetchPosts();
+  }, [search]);
 
   useEffect(() => {
     const getPost = async () => {
@@ -43,7 +56,7 @@ export default function SinglePost() {
         title,
         desc,
       });
-      setUpdateMode(false)
+      setUpdateMode(false);
     } catch (err) {}
   };
 
@@ -81,9 +94,7 @@ export default function SinglePost() {
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
             Author:
-            <Link to={`/?user=${post.username}`} className="link">
-              <b> {post.username}</b>
-            </Link>
+            <Link to={`/?user=${post.username}`} className="link"><b> {post.username}</b></Link>
           </span>
           <span className="singlePostDate">
             {new Date(post.createdAt).toDateString()}
@@ -91,12 +102,13 @@ export default function SinglePost() {
         </div>
         {updateMode ? (
           <textarea
-            className="singlePostDescInput"
+            className="form-control singlePostDescInput  bg-gray-200  h-100 w-full mt-0  "
+            rows="8"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
           />
         ) : (
-          <p className="singlePostDesc">{desc}</p>
+          <p className="singlePostDesc" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.desc) }}></p>
         )}
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>
@@ -104,6 +116,63 @@ export default function SinglePost() {
           </button>
         )}
       </div>
+         { //Profile card section 
+          post.username != user?.username &&(
+            <section>
+            <div className="container py-5 h-100">
+              <div className="row d-flex justify-content-center align-items-center h-100">
+                <div className="col col-md-9 col-lg-7 col-xl-5">
+                  <div className="card" style={{ borderRadius: 15 }}>
+                    <div className="card-body p-4">
+                      <div className="d-flex text-black">
+                        <div className="flex-shrink-0">
+                          <img
+                            src={PF + user.profilePic}
+                            alt="Generic placeholder image"
+                            className="img-fluid"
+                            style={{ width: 180, borderRadius: 10 }}
+                          />
+                        </div>
+                        <div className="flex-grow-1 ms-3">
+                          <h5 className="mb-1">{post.username}</h5>
+                          <p className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>
+                            UniBlog Member
+                          </p>
+                          <div
+                            className="d-flex justify-content-start rounded-3 p-2 mb-2"
+                            style={{ backgroundColor: "#efefef" }}
+                          >
+                            <div>
+                              <p className="small text-muted mb-1">Posts</p>
+                              <p className="mb-0">{profile.length}</p>
+                            </div>
+                            <div className="px-3">
+                              <p className="small text-muted mb-1">Followers</p>
+                              <p className="mb-0">976</p>
+                            </div>
+                            <div>
+                              <p className="small text-muted mb-1">Rating</p>
+                              <p className="mb-0">8.5</p>
+                            </div>
+                          </div>
+                          <div className="d-flex pt-1">
+                            <button
+                              type="button"
+                              className="btn btn-primary flex-grow-1"
+                            >
+                              Follow
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          )
+         }
     </div>
   );
 }

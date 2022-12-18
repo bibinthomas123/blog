@@ -19,7 +19,7 @@ function App() {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, 3000);
+    }, 3500);
   },[])
   return (
       <>
@@ -40,12 +40,9 @@ function App() {
       <Footer />
     </BrowserRouter>
         }
-      </>
-    
-      
-      
-     
+      </> 
   );
 }
 
 export default App;
+

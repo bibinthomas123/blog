@@ -2,17 +2,23 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Context } from "../../context/context";
 import "../../pages/single_page/singlepost.css";
+//editor
+import ReactQuill from "react-quill";
+import EditorToolbar, { modules, formats } from "./Editortoolbar";
+import "react-quill/dist/quill.snow.css";
+import "./TextEditor.css";
 
 import "./write.css";
-// import Image from "react-bootstrap/Image"
 
 export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [cat, setCat] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
 
+  const ondescription = (value) => {
+    setDesc(value)
+  } 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -42,7 +48,7 @@ export default function Write() {
           <div>
             <img
               src={URL.createObjectURL(file)}
-              alt="cover image"
+              alt="cover"
               style={{ borderRadius: 20 }}
               className="singlePostImg px-2 my-5"
             />
@@ -80,16 +86,17 @@ export default function Write() {
               </div>
             </div>
           </section>
-          <section class="container">
-            <div class="input-group ">
-              <textarea 
-                className="form-control  bg-gray-200  h-100 w-full mt-0  "
-                rows="7"
-                
-                type="textarea"
-                placeholder="Tell us your story.. :)"
-                onBlur={(e) => setDesc(e.target.value)}
-              ></textarea>
+          <section class="container col-md-12">
+          <div className="form-group col-md-12 editor">
+            <EditorToolbar toolbarId={'t2'}/>
+            <ReactQuill
+              theme="snow"
+              value={desc}
+              onChange={ondescription}
+              placeholder={"Tell us your story..."}
+              modules={modules('t2')}
+              formats={formats}
+            />
             </div>
             <button type="submit" class="btn btn-primary my-3 ">
               Submit

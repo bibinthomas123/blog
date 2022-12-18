@@ -1,9 +1,9 @@
-.date,.subtext{
-    font-family:"Lora",sans-serif;
-    color: #444;
+.date{
+  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  color: #444;
 }
 .subtext{
-    font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  font-family:"Libre Baskerville",Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
@@ -12,12 +12,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp:4 ;
   -webkit-box-orient: vertical;
 }
 .title{
-    font-family:"Josefin Sans",sans-serif;
+    font-family:"Montserrat",sans-serif;
     font-size: 25px;
+    font-weight: 500;
     text-transform:capitalize;
 }
 
@@ -30,3 +31,14 @@
     /* margin: 0px 25px 40px 25px; */
     margin:0px 10px 20px 0;
   }
+
+
+  .card-img{
+    width:50%;
+    height:50%;
+    /* object-fit:cover; */
+    border-bottom-right-radius:0px;
+}
+.card p{
+  line-height: 1.4em;
+}

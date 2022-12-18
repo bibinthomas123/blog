@@ -59,6 +59,21 @@ router.get("/:id",async(req,res)=>{
   }
 })
 
+router.get("/",async(req,res)=>{
+  try {
+    const user = await User.find();
+    //to hide the password from the response 
+    // const {password,...others}= user._doc
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(500).json("error")
+  }
+})
+
+
+
+//
+
 
 
 module.exports = router;

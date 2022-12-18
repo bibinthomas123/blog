@@ -1,123 +1,141 @@
-import React from 'react'
-
+import React from "react";
+import "./about.css";
+import { useContext, useState, useEffect } from "react";
+import { Context } from "../../context/context";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useLocation } from "react-router";
+import { createApi } from "unsplash-js";
 
 function About() {
+  const { user } = useContext(Context);
+  const [posts, setPosts] = useState([]);
+  const PF = "http://localhost:5000/images/";
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get("posts?user="+user.username);
+      setPosts(res.data);
+      console.log(res.data);
+      // console.log(posts[0]._id)
+    };
+    fetchPosts();
+  }, [search]);
+
+  //calling unsplash api for images
+
+  const [image, setImage] = useState([]);
+  useEffect(() => {
+    const unsplash = createApi({
+      accessKey: "phSB4UX9ouCgPF7cNWvLcUzU9YIBC3AVhL3cfqTlHIY",
+      // `fetch` options to be sent with every request
+      headers: { "X-Custom-Header": "foo" },
+    });
+    const searchPhotos = async (e) => {
+      // e.preventDefault();
+      unsplash.search
+        .getPhotos({
+          query: "patterns",
+          page: 1,
+          perPage: 100,
+          orientation: "landscape",
+        })
+        .then((reponse) => {
+          setImage(reponse.response.results[Math.floor(Math.random() * 10)].urls.regular);
+        });
+    };
+    console.log(image)
+
+    searchPhotos();
+  }, []);
   return (
-    <> 
-   
-
-<div className="bg-light">
-  <div className="container py-5">
-    <div className="row h-100 align-items-center py-5">
-      <div className="col-lg-6">
-        <h1 className="display-4">About us page</h1>
-        <p className="lead text-muted mb-0">Create a minimal about us page using Bootstrap 4.</p>
-        <p className="lead text-muted">Snippet by <a href="https://bootstrapious.com/snippets" className="text-muted"> 
-                    <u>Bootstrapious</u></a>
-        </p>
-      </div>
-      <div className="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" className="img-fluid"/></div>
-    </div>
-  </div>
-</div>
-
-<div className="bg-white py-5">
-  <div className="container py-5">
-    <div className="row align-items-center mb-5">
-      <div className="col-lg-6 order-2 order-lg-1"><i className="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
-        <h2 className="font-weight-light">Lorem ipsum dolor sit amet</h2>
-        <p className="font-italic text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" className="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
-      </div>
-      <div className="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="https://bootstrapious.com/i/snippets/sn-about/img-1.jpg" alt="" className="img-fluid mb-4 mb-lg-0"/></div>
-    </div>
-    <div className="row align-items-center">
-      <div className="col-lg-5 px-5 mx-auto"><img src="https://bootstrapious.com/i/snippets/sn-about/img-2.jpg" alt="" className="img-fluid mb-4 mb-lg-0"/></div>
-      <div className="col-lg-6"><i className="fa fa-leaf fa-2x mb-3 text-primary"></i>
-        <h2 className="font-weight-light">Lorem ipsum dolor sit amet</h2>
-        <p className="font-italic text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" className="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div className="bg-light py-5">
-  <div className="container py-5">
-    <div className="row mb-4">
-      <div className="col-lg-5">
-        <h2 className="display-4 font-weight-light">Our team</h2>
-        <p className="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-    </div>
-
-    <div className="row text-center">
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-4.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">Manuella Nevoresky</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
+    <>
+      <section className="h-100 gradient-custom-2">
+        <div className="container py-5 h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col col-lg-9 col-xl-7">
+              <div className="card">
+                <div
+                  className="rounded-top text-white d-flex flex-row"
+                   style={{ backgroundImage: `url(${image})` , height: 200 }}
+                >
+                  <div
+                    className="ms-4 mt-5 d-flex flex-column"
+                    style={{ width: 150 }}
+                  >
+                    <img
+                      src={PF + user.profilePic}
+                      alt="Generic placeholder image"
+                      className="img-fluid img-thumbnail mt-4 mb-2"
+                      style={{ width: 150, zIndex: 1 }}
+                    />
+                    <a
+                      type="button"
+                      className="btn btn-outline-dark"
+                      style={{ zIndex: 1 }}
+                      href="/settings"
+                    >
+                      Edit profile
+                    </a>
+                  </div>
+                  <div className="ms-3" style={{ marginTop: 130 }}>
+                    <h5>{user.username}</h5>
+                  </div>
+                </div>
+                <div
+                  className="p-4 text-black"
+                  style={{ backgroundColor: "#f8f9fa" }}
+                >
+                  <div className="d-flex justify-content-end text-center py-1">
+                   <Link className="link" to={`/?user=${user.username}`}>
+                   <div>
+                      <p className="mb-1 h5">{posts.length}</p>
+                      <p className="small text-muted mb-0">Posts</p>
+                    </div>
+                   </Link>
+                    <div className="px-3">
+                      <p className="mb-1 h5">1026</p>
+                      <p className="small text-muted mb-0">Followers</p>
+                    </div>
+                    <div>
+                      <p className="mb-1 h5">478</p>
+                      <p className="small text-muted mb-0">Following</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-body p-4 text-black">
+                  <div className="mb-5">
+                    <p className="lead fw-normal mb-1">About</p>
+                    <div className="p-4" style={{ backgroundColor: "#f8f9fa" }}>
+                      <p className="font-italic mb-1">{user.about}</p>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <p className="lead fw-normal mb-0">Recent Posts</p>
+                    <p className="mb-0">
+                      <Link to={`/?user=${user.username}`} className="text-muted">
+                        Show all
+                      </Link>
+                    </p>
+                  </div>
+                  <div className="row g-2 bg-light p-2 text-capitalize">
+                    {posts.map((i) => {
+                      return(                        
+                        <a href={`/viewpage/${i._id}`} style={{fontWeight:600,paddingTop:"5px"}} className="link">{i.title}</a>
+                        )
+                      })}
+                    
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      {/* <!-- End--> */}
-
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-3.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">Samuel Hardy</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      {/* <!-- End--> */}
-
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-2.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">Tom Sunderland</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      {/* <!-- End--> */}
-
-      {/* <!-- Team item--> */}
-      <div className="col-xl-3 col-sm-6 mb-5">
-        <div className="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-1.png" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"/>
-          <h5 className="mb-0">John Tarly</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
-          <ul className="social mb-0 list-inline mt-3">
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-            <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    
-
-    </div>
-  </div>
-</div>
-
-
-{/* <footer className="bg-light pb-5">
-  <div className="container text-center">
-    <p className="font-italic text-muted mb-0">&copy; Copyrights Company.com All rights reserved.</p>
-  </div>
-</footer> */}
-</>
-  )
+      </section>
+    </>
+  );
 }
 
-export default About
+export default About;
