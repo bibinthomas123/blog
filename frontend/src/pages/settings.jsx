@@ -210,6 +210,8 @@ export default function Settings() {
                       id="inputPassword6"
                       required
                       placeholder="Confirm password"
+                      pattern="^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$"
+                      
                     //   onChange={e=>userpassword2(e.target.value)}
                     onChange={e=>setPassword(e.target.value)}
                     />
