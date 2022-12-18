@@ -41,7 +41,7 @@ function Header() {
         <div className="container h-100 d-flex justify-content-center align-items-center">
           <div className="myfont">
             <div className="text-white">
-              <h1 className="mb-3">The Blog</h1>
+              <h1 className="mb-3 text-h1">The Blog</h1>
               <h4 className="mb-3">Write what your Soul says...</h4>
             </div>
           </div>

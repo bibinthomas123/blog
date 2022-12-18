@@ -6,10 +6,7 @@
     background-position: center;
     background-size: cover;
 }
-.myfont{
-    font-family: 'lora', sans-serif;
-    color: #444;
-}
-.myfont h1{
+.text-h1{
+    font: 'Libre Baskerville',sans-serif;
     font-size: 91px;
 }

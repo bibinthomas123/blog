@@ -40,11 +40,11 @@ export default function Signup() {
   };
 
   return (
-    <Container>
+    <Container className="bg-light mt-4 rounded shadow  border-box">
       <Row>
         <Col
-          md={7}
-          className="d-flex align-items-center justify-content-center"
+          md={6}
+          className="d-flex align-items-center borders justify-content-center"
         >
           <Form className="login__form" onSubmit={handleSubmit}>
             <h1 className="text-center">Signup</h1>
@@ -99,7 +99,7 @@ export default function Signup() {
           </Form>
         </Col>
 
-        <Col md={5} className="login_bg--container"></Col>
+        <Col md={6} className="login_bg--container"></Col>
       </Row>
     </Container>
   );

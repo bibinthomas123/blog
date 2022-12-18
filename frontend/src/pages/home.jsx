@@ -28,10 +28,7 @@ export default function Home() {
         <Col md={4}> <Sidebar /></Col>
       </Row>
    </Container>
-   </div>
-   
-   
-   
+   </div>   
    </>
   )
 }

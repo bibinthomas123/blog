@@ -1,9 +1,9 @@
-.date,.subtext{
-    font-family:"Lora",sans-serif;
-    color: #444;
+.date{
+  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  color: #444;
 }
 .subtext{
-    font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  font-family:"Libre Baskerville",Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
@@ -16,8 +16,9 @@
   -webkit-box-orient: vertical;
 }
 .title{
-    font-family:"Josefin Sans",sans-serif;
+    font-family:"Montserrat",sans-serif;
     font-size: 25px;
+    font-weight: 500;
     text-transform:capitalize;
 }
 

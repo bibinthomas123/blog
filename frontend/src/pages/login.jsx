@@ -36,25 +36,25 @@ export default function Login() {
   };
 
   return (
-    <Container>
+    <Container className="bg-light mt-4 rounded shadow  border-box">
       <Row>
         <Col
-          md={7}
+          md={6}
           className="d-flex align-items-center justify-content-center"
         >
           <Form className="login__form" onSubmit={handleSubmit}>
             <h1 className="text-center">Login</h1>
             <Form.Group className="mb-3" controlId="formBasicUsername">
-              <Form.Label>Username</Form.Label>
+              <Form.Label className="text_h1">Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Username"
-                ref={userRef}
+                ref={userRef}                
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="text_h1" >Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -72,7 +72,7 @@ export default function Login() {
           </Form>
         </Col>
 
-        <Col md={5} className="login_bg--container"></Col>
+        <Col md={6} className="login_bg--container"></Col>
       </Row>
     </Container>
   );

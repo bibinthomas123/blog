@@ -1,10 +1,17 @@
 .login_bg--container{
-    background-image: url("../images/Computer\ login-amico.png");
+    background-image: url("https://images.unsplash.com/photo-1455218873509-8097305ee378?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     height: 80vh;
 
+}
+h1,.text_h1{
+    font-family: 'Libre Baskerville', serif;
+}
+
+p{
+    font-family: 'Montserrat', sans-serif;
 }
 
 .login__form{
@@ -12,14 +19,24 @@
     margin:0 auto
 }
 
-@media  screen and (width:768) {
+@media  screen and (min-width:768) {
     .login__form{
         width: 80%;
         margin:0 auto;}
-    
+
+   
 }
 
 .button:disabled{
     cursor: not-allowed;
 
 }
+.shadow{
+    border-radius: 16px;
+background: #ffffff;
+box-shadow:  15px 15px 66px #bfbfbf,
+             -15px -15px 66px #ffffff;
+}
+
+
+.border-box{border: 1px solid black ;}

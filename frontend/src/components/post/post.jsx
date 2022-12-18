@@ -1,9 +1,9 @@
+import DOMPurify from "dompurify";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import "./post.css";
 import { Link } from "react-router-dom";  
 const readingTime =require("reading-time/lib/reading-time")
-
 
 export default function Post({ post }) {
   const PF = "http://localhost:5000/images/";
@@ -31,14 +31,14 @@ export default function Post({ post }) {
             <div className="card-body d-flex flex-column">
               <div className="h-100">
                 <h5 className="card-title text-muted">{post.category}</h5>
-                <h5 className="card-title">
+                <h5 className="card-title title">
                   {post.title}
                 </h5>
                 <h6 className="card-subtitle mb-3">
                   by <span className="font-weight-bold">{post.username}</span>
                 </h6>
-                <p className="card-text mb-3 subtext" id="text">
-                  {post.desc}
+                <p className="card-text mb-3 subtext" id="text"  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.desc) }}>
+                
                 </p>
               </div>
               <div>

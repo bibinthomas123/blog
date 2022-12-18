@@ -1,4 +1,5 @@
 import axios from "axios";
+import DOMPurify from "dompurify";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
@@ -91,12 +92,9 @@ export default function SinglePost() {
           </h1>
         )}
         <div className="singlePostInfo">
-          <span className="singlePostAuthor   position-relative ">
+          <span className="singlePostAuthor">
             Author:
-            <Link to={`/?user=${post.username}`} className="link active">
-              
-              <img src={PF + user.profilePic} alt="" height={"35px"} /> <p> {post.username}</p>
-            </Link>
+            <Link to={`/?user=${post.username}`} className="link"><b> {post.username}</b></Link>
           </span>
           <span className="singlePostDate">
             {new Date(post.createdAt).toDateString()}
@@ -110,7 +108,7 @@ export default function SinglePost() {
             onChange={(e) => setDesc(e.target.value)}
           />
         ) : (
-          <p className="singlePostDesc">{desc}</p>
+          <p className="singlePostDesc" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.desc) }}></p>
         )}
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>
@@ -138,7 +136,7 @@ export default function SinglePost() {
                         <div className="flex-grow-1 ms-3">
                           <h5 className="mb-1">{post.username}</h5>
                           <p className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>
-                            Senior Journalist
+                            UniBlog Member
                           </p>
                           <div
                             className="d-flex justify-content-start rounded-3 p-2 mb-2"
