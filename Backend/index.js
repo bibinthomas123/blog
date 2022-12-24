@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const CatRoute = require("./routes/category");
+const follow_route = require("./routes/follow");
 const multer = require("multer"); //storage used to store the images
 const path = require("path");
 const readingTime = require("reading-time")
@@ -45,6 +46,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", CatRoute);
+app.use("/api/v1", follow_route);
 
 //server port
 app.listen(5000, () => {

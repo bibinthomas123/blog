@@ -1,24 +1,34 @@
 import React from "react";
 import "./about.css";
-import { useContext, useState, useEffect } from "react";
-import { Context } from "../../context/context";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router";
 import { createApi } from "unsplash-js";
+import { Context } from "../../context/context";
+import { useContext } from "react";
 
 function About() {
-  const { user } = useContext(Context);
+  const users = window.location.pathname.split("/")[2];
+  const {user} = useContext(Context)
+
   const [posts, setPosts] = useState([]);
+  const [User, setUser] = useState([]);
   const PF = "http://localhost:5000/images/";
   const { search } = useLocation();
 
   useEffect(() => {
+    const FetchUsers = async () => {
+      const res= await axios.get("/users?user=" + users);
+      setUser(res.data[0]);
+      console.log(res.data[0]);
+    };
+    FetchUsers();
+
     const fetchPosts = async () => {
-      const res = await axios.get("posts?user="+user.username);
+      const res = await axios.get("/posts?user=" + users);
       setPosts(res.data);
       console.log(res.data);
-      // console.log(posts[0]._id)
     };
     fetchPosts();
   }, [search]);
@@ -33,7 +43,6 @@ function About() {
       headers: { "X-Custom-Header": "foo" },
     });
     const searchPhotos = async (e) => {
-      // e.preventDefault();
       unsplash.search
         .getPhotos({
           query: "patterns",
@@ -42,10 +51,12 @@ function About() {
           orientation: "landscape",
         })
         .then((reponse) => {
-          setImage(reponse.response.results[Math.floor(Math.random() * 10)].urls.regular);
+          setImage(
+            reponse.response.results[Math.floor(Math.random() * 10)].urls
+              .regular
+          );
         });
     };
-    console.log(image)
 
     searchPhotos();
   }, []);
@@ -58,29 +69,35 @@ function About() {
               <div className="card">
                 <div
                   className="rounded-top text-white d-flex flex-row"
-                   style={{ backgroundImage: `url(${image})` , height: 200 }}
+                  style={{ backgroundImage: `url(${image})`, height: 200 }}
                 >
                   <div
                     className="ms-4 mt-5 d-flex flex-column"
                     style={{ width: 150 }}
                   >
                     <img
-                      src={PF + user.profilePic}
+                      src={PF + User.profilePic}
                       alt="Generic placeholder image"
                       className="img-fluid img-thumbnail mt-4 mb-2"
                       style={{ width: 150, zIndex: 1 }}
                     />
-                    <a
+                   {
+                     User.username != user?.username &&( 
+                      <a
                       type="button"
-                      className="btn btn-outline-dark"
+                      className="btn btn-outline-dark bg-white text-dark"
                       style={{ zIndex: 1 }}
                       href="/settings"
                     >
                       Edit profile
                     </a>
+                     )
+
+                    
+                   }
                   </div>
                   <div className="ms-3" style={{ marginTop: 130 }}>
-                    <h5>{user.username}</h5>
+                    <h5>{User.username}</h5>
                   </div>
                 </div>
                 <div
@@ -88,12 +105,12 @@ function About() {
                   style={{ backgroundColor: "#f8f9fa" }}
                 >
                   <div className="d-flex justify-content-end text-center py-1">
-                   <Link className="link" to={`/?user=${user.username}`}>
-                   <div>
-                      <p className="mb-1 h5">{posts.length}</p>
-                      <p className="small text-muted mb-0">Posts</p>
-                    </div>
-                   </Link>
+                    <Link className="link" to={`/?user=${User.username}`}>
+                      <div>
+                        <p className="mb-1 h5">{posts.length}</p>
+                        <p className="small text-muted mb-0">Posts</p>
+                      </div>
+                    </Link>
                     <div className="px-3">
                       <p className="mb-1 h5">1026</p>
                       <p className="small text-muted mb-0">Followers</p>
@@ -108,26 +125,34 @@ function About() {
                   <div className="mb-5">
                     <p className="lead fw-normal mb-1">About</p>
                     <div className="p-4" style={{ backgroundColor: "#f8f9fa" }}>
-                      <p className="font-italic mb-1">{user.about}</p>
+                      <p className="font-italic mb-1">{User.about}</p>
                     </div>
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-4">
                     <p className="lead fw-normal mb-0">Recent Posts</p>
                     <p className="mb-0">
-                      <Link to={`/?user=${user.username}`} className="text-muted">
+                      <Link
+                        to={`/?user=${User.username}`}
+                        className="text-muted"
+                      >
                         Show all
                       </Link>
                     </p>
                   </div>
                   <div className="row g-2 bg-light p-2 text-capitalize">
                     {posts.map((i) => {
-                      return(                        
-                        <a href={`/viewpage/${i._id}`} style={{fontWeight:600,paddingTop:"5px"}} className="link">{i.title}</a>
-                        )
-                      })}
-                    
+                      return (
+                        <a
+                          href={`/viewpage/${i._id}`}
+                          key={i._id}
+                          style={{ fontWeight: 600, paddingTop: "5px" }}
+                          className="link"
+                        >
+                          {i.title}
+                        </a>
+                      );
+                    })}
                   </div>
-                 
                 </div>
               </div>
             </div>

@@ -22,7 +22,11 @@ const UserSchema = new mongoose.Schema(
     },
     following:{
       type: Array,
-      required:false
+      type: String
+    },
+    followers:{
+      type:Array,
+      type: String,
     },
     profilePic: {
       type: String,

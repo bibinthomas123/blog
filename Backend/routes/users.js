@@ -33,7 +33,7 @@ router.delete("/:id", async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
       try {
-        await Post.deleteMany({username:user.username})
+        await Post.deleteMany({ username: user.username });
         await User.findByIdAndDelete(req.params.id);
         res.status(200).json("User deleted successfully!...");
       } catch (err) {
@@ -47,33 +47,33 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//get user 
-router.get("/:id",async(req,res)=>{
+//get user
+router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    //to hide the password from the response 
-    const {password,...others}= user._doc
-    res.status(200).json(others)
+    //to hide the password from the response
+    const { password, ...others } = user._doc;
+    res.status(200).json(others);
   } catch (error) {
-    res.status(500).json("error")
+    res.status(500).json("error");
   }
-})
-
-router.get("/",async(req,res)=>{
+});
+//get all users
+router.get("/", async (req, res) => {
+  const username = req.query.user;
   try {
-    const user = await User.find();
-    //to hide the password from the response 
-    // const {password,...others}= user._doc
-    res.status(200).json(user)
+    let posts;
+    if (username) {
+      posts = await User.find({ username });
+    } else {
+      posts = await User.find().sort({ createdAt: -1 }); //getting data in reverse order
+    }
+    res.status(200).json(posts);
   } catch (error) {
-    res.status(500).json("error")
+    res.status(500).json("error");
   }
-})
-
-
+});
 
 //
-
-
 
 module.exports = router;

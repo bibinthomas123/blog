@@ -37,7 +37,7 @@ export default function Post({ post }) {
                 <h6 className="card-subtitle mb-3">
                   by <span className="font-weight-bold">{post.username}</span>
                 </h6>
-                <p className="card-text mb-3 subtext" id="text"  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.desc) }}>
+                <p className="card-text mb-3 subtext" id="text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.desc) }}>
                 
                 </p>
               </div>

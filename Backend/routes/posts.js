@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { remove } = require("../models/post");
 const Post = require("../models/post");
 const User = require("../models/user")
 // const image = require("../images")
@@ -45,6 +46,7 @@ router.delete("/:id", async (req, res) => {
     const post = await Post.findById(req.params.id);
     if (post.username === req.body.username) {
       try {
+        remove(`/images/${post.photo}`)
         await post.delete();
         res.status(200).json("post has been deleted");
       } catch (err) {

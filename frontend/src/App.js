@@ -33,7 +33,7 @@ function App() {
         <Route path="/viewpage/:viewpageId" element={<Single />} />
         <Route path="/addPost" element={user ? (<Write/>) : (<Navigate  to={"/login"}/>)} />
         <Route path="/settings" element={user ? (<Settings/>) : (<Navigate  to={"/login"}/>)} />
-        <Route path="/about" element={user ? (<About/>) : (<Navigate  to={"/login"}/>)} />
+        <Route path="/about/:username" element={user ? (<About/>) : (<Navigate  to={"/login"}/>)} />
       </Routes>  
     
     
