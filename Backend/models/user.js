@@ -21,12 +21,12 @@ const UserSchema = new mongoose.Schema(
       required:false
     },
     following:{
-      type: Array,
-      type: String
+      type: [String],
+      default:[]
     },
     followers:{
-      type:Array,
-      type: String,
+      type: [String],
+      default:[]
     },
     profilePic: {
       type: String,

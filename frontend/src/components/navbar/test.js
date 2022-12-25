@@ -3,12 +3,15 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../../images/twitter.png";
 import { Context } from "../../context/context.js";
-import { useContext } from "react";
+import { useContext,useState } from "react";
+import { Link } from "react-router-dom";
 import "./navbar.css";
+
 function Navbarexp() {
   const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:5000/images/";
 
+  
   const handleLogout = () => {
     dispatch({
       type: "LOGOUT",
@@ -41,7 +44,8 @@ function Navbarexp() {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/about">Profile</Nav.Link>
+
+               <Nav.Link> <Link to={ `/about/${user.username}`} className="nav_link">Profile</Link></Nav.Link>
                 <Nav.Link href="/addpost">Write</Nav.Link>
                 <Nav.Link href="/login" onClick={handleLogout}>
                   Logout
@@ -55,9 +59,7 @@ function Navbarexp() {
                     placeholder="Search...."
                     aria-label="Search"
                   />
-                  {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
                 </form>
-
                 <Nav.Link href="/settings">
                   <img
                     src={PF + user.profilePic}

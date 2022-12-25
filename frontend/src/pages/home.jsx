@@ -14,7 +14,7 @@ export default function Home() {
     const fetchPosts = async () => {
       const res = await Axios.get("/posts"+search);
       setPosts(res.data)
-      console.log(res)
+       
     };
     fetchPosts();
   }, [search]);

@@ -21,23 +21,25 @@ function Header() {
           orientation: "landscape",
         })
         .then((reponse) => {
-          setImage(reponse.response.results[Math.floor(Math.random() * 10)].urls.full);
+          setImage(
+            reponse.response.results[Math.floor(Math.random() * 10)].urls.full
+          );
         });
     };
 
     searchPhotos();
   }, []);
   return (
-    <div className="container-fluid w-100 ">
-  
-        <div
+    <div className="container-fluid w-100">
+      <div
         className="p-5 m-0 text-center bg-image"
         style={{
-          backgroundImage:`url(${image})`,
+          backgroundImage: `url(${image})`,
           height: 620,
-           boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)"
+          boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)",
         }}
       >
+         
         <div className="container h-100 d-flex justify-content-center align-items-center">
           <div className="myfont">
             <div className="text-white">
@@ -47,7 +49,6 @@ function Header() {
           </div>
         </div>
       </div>
- 
     </div>
   );
 }

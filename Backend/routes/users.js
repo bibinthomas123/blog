@@ -55,9 +55,10 @@ router.get("/:id", async (req, res) => {
     const { password, ...others } = user._doc;
     res.status(200).json(others);
   } catch (error) {
-    res.status(500).json("error");
+    res.status(500).json("user not found");
   }
 });
+
 //get all users
 router.get("/", async (req, res) => {
   const username = req.query.user;
@@ -70,10 +71,8 @@ router.get("/", async (req, res) => {
     }
     res.status(200).json(posts);
   } catch (error) {
-    res.status(500).json("error");
+    res.status(500).json("Error");
   }
 });
-
-//
 
 module.exports = router;

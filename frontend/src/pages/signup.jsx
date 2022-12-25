@@ -20,7 +20,7 @@ export default function Signup() {
     if (!validPassword.test(password)) {
       setPasswordErr(true)
 
-      // console.log(error)
+      //  
 
     } else {
       setPasswordErr(true)
@@ -31,7 +31,7 @@ export default function Signup() {
           email,
           password,
         });
-        // console.log(res)
+        //  
         res.data && window.location.replace("/"); //once signed up redirect to the login page
       } catch (err) {
         setError(true);

@@ -19,10 +19,10 @@ export default function Post({ post }) {
     <div className="container mb-3">
       <div className="card h-100 border-top  border-dark">
         <div className="row g-0">
-          <div className="col-6 col-md-5">
+          <div className="col-6 col-md-5 d-flex align-items-center p-3">
             <img
               src={PF+post.photo}
-              className="card-img img-fluid rounded-start h-100"
+              className="card-img img-fluid rounded-start h-75 "
               alt="image/hmhmh"
               height={"450px"}
             />

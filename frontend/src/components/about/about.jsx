@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 function About() {
   const users = window.location.pathname.split("/")[2];
-  const {user} = useContext(Context)
+  const { user, dispatch } = useContext(Context);
 
   const [posts, setPosts] = useState([]);
   const [User, setUser] = useState([]);
@@ -19,22 +19,20 @@ function About() {
 
   useEffect(() => {
     const FetchUsers = async () => {
-      const res= await axios.get("/users?user=" + users);
+      const res = await axios.get("/users?user=" + users);
       setUser(res.data[0]);
-      console.log(res.data[0]);
+      console.log(User);
     };
     FetchUsers();
 
     const fetchPosts = async () => {
       const res = await axios.get("/posts?user=" + users);
       setPosts(res.data);
-      console.log(res.data);
     };
     fetchPosts();
   }, [search]);
 
   //calling unsplash api for images
-
   const [image, setImage] = useState([]);
   useEffect(() => {
     const unsplash = createApi({
@@ -60,6 +58,16 @@ function About() {
 
     searchPhotos();
   }, []);
+
+  const handleSub = async () => {
+    const follow = {
+      username: user._id,
+      following: User._id,
+    };
+   
+    await axios.patch(`/v1/follow/`,follow);
+  };
+
   return (
     <>
       <section className="h-100 gradient-custom-2">
@@ -69,6 +77,7 @@ function About() {
               <div className="card">
                 <div
                   className="rounded-top text-white d-flex flex-row"
+                  id="overlay"
                   style={{ backgroundImage: `url(${image})`, height: 200 }}
                 >
                   <div
@@ -81,23 +90,30 @@ function About() {
                       className="img-fluid img-thumbnail mt-4 mb-2"
                       style={{ width: 150, zIndex: 1 }}
                     />
-                   {
-                     User.username != user?.username &&( 
+                    {User.username === user?.username && (
                       <a
-                      type="button"
-                      className="btn btn-outline-dark bg-white text-dark"
-                      style={{ zIndex: 1 }}
-                      href="/settings"
-                    >
-                      Edit profile
-                    </a>
-                     )
-
-                    
-                   }
+                        type="button"
+                        className="btn btn-outline-dark bg-white text-dark"
+                        style={{ zIndex: 1 }}
+                        href="/settings"
+                      >
+                        Edit profile
+                      </a>
+                    )}
                   </div>
-                  <div className="ms-3" style={{ marginTop: 130 }}>
+
+                  <div
+                    className="ms-3 d-flex align-items-center"
+                    style={{ marginTop: 130 }}
+                  >
                     <h5>{User.username}</h5>
+                    <div className="container ">
+                      <button id="follow-button" onClick={handleSub}>
+                        {user.following?.includes(User._id)
+                          ? "Unfollow"
+                          : "following"}
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -105,18 +121,17 @@ function About() {
                   style={{ backgroundColor: "#f8f9fa" }}
                 >
                   <div className="d-flex justify-content-end text-center py-1">
-                    <Link className="link" to={`/?user=${User.username}`}>
-                      <div>
-                        <p className="mb-1 h5">{posts.length}</p>
-                        <p className="small text-muted mb-0">Posts</p>
-                      </div>
-                    </Link>
+                    <div>
+                      <p className="mb-1 h5">{posts.length}</p>
+                      <p className="small text-muted mb-0">Posts</p>
+                    </div>
+
                     <div className="px-3">
-                      <p className="mb-1 h5">1026</p>
+                      {/* <p className="mb-1 h5">{user.followers.length}</p> */}
                       <p className="small text-muted mb-0">Followers</p>
                     </div>
                     <div>
-                      <p className="mb-1 h5">478</p>
+                      {/* <p className="mb-1 h5">{user.following.length}</p> */}
                       <p className="small text-muted mb-0">Following</p>
                     </div>
                   </div>
@@ -130,14 +145,7 @@ function About() {
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-4">
                     <p className="lead fw-normal mb-0">Recent Posts</p>
-                    <p className="mb-0">
-                      <Link
-                        to={`/?user=${User.username}`}
-                        className="text-muted"
-                      >
-                        Show all
-                      </Link>
-                    </p>
+                    <p className="mb-0"></p>
                   </div>
                   <div className="row g-2 bg-light p-2 text-capitalize">
                     {posts.map((i) => {

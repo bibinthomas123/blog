@@ -52,13 +52,13 @@ export default function Settings() {
   return (
     <div className="container pb-5">
       <div className="row justify-content-center">
-        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-          <h2 class="h3 mb-4 page-title">Settings</h2>
-          <div class="my-4">
-            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-              <li class="nav-item">
+        <div  className="col-12 col-lg-10 col-xl-8 mx-auto">
+          <h2  className="h3 mb-4 page-title">Settings</h2>
+          <div  className="my-4">
+            <ul  className="nav nav-tabs mb-4" id="myTab" role="tablist">
+              <li  className="nav-item">
                 <a
-                  class="nav-link active"
+                   className="nav-link active"
                   id="home-tab"
                   data-toggle="tab"
                   role="tab"
@@ -70,13 +70,13 @@ export default function Settings() {
               </li>
             </ul>
             <form onSubmit={handleSubmit}>
-              <div class="row mt-5 align-items-center">
-                <div class="col-md-3 text-center mb-5">
-                  <div class="avatar avatar-xl position-relative">
+              <div  className="row mt-5 align-items-center">
+                <div  className="col-md-3 text-center mb-5">
+                  <div  className="avatar avatar-xl position-relative">
                     <img
                       src={file ?URL.createObjectURL(file):PF+user.profilePic} style={{ backgroundSize:"contain",width:250,height:250}}
                       alt="profic pic"
-                      class="avatar-img rounded-circle p-4"
+                       className="avatar-img rounded-circle p-4"
                     />
           
                     <div className="position-absolute bottom-0 end-0 translate-middle  ">
@@ -93,19 +93,19 @@ export default function Settings() {
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="row p-5">
-                    <div class="col-md-8">
-                      <h6 class="">Username</h6>
-                      <h4 class="mb-1 ">{user.username}</h4>
-                      <p class="small mb-3">
-                        {/* <span class="badge badge-dark">New York, USA</span> */}
+                <div  className="col">
+                  <div  className="row p-5">
+                    <div  className="col-md-8">
+                      <h6  className="">Username</h6>
+                      <h4  className="mb-1 ">{user.username}</h4>
+                      <p  className="small mb-3">
+                        {/* <span  className="badge badge-dark">New York, USA</span> */}
                       </p>
                     </div>
                   </div>
-                  <div class="row mb-4">
-                    {/* <div class="col-md-8">
-                      <p class="text-muted">
+                  <div  className="row mb-4">
+                    {/* <div  className="col-md-8">
+                      <p  className="text-muted">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Mauris blandit nisl ullamcorper, rutrum metus in, congue
                         lectus. In hac habitasse platea dictumst. Cras urna
@@ -113,82 +113,82 @@ export default function Settings() {
                         {user.bio}
                       </p>
                     </div> */}
-                    <div class="col">
+                    <div  className="col">
                       <p>About</p>
-                      <p class="small mb-0 text-muted">
+                      <p  className="small mb-0 text-muted">
                       {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Mauris blandit nisl ullamcorper, rutrum metus in, congue
                         lectus. In hac habitasse platea dictumst. Cras urna
                         quam, malesuada vitae risus at, pretium blandit sapien. */}
                         {user.about}
                       </p>
-                      {/* <p class="small mb-0 text-muted">(537) 315-1481</p> */}
+                      {/* <p  className="small mb-0 text-muted">(537) 315-1481</p> */}
                     </div>
                   </div>
                 </div>
               </div>
-              <hr class="my-4" />
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="firstname">Username</label>
+              <hr  className="my-4" />
+              <div  className="form-row">
+                <div  className="form-group col-md-6">
+                  <label htmlFor="firstname">Username</label>
                   <input
                     type="text"
                     id="username"
-                    class="form-control"  
+                     className="form-control"  
                     placeholder={user.username}
-                    autocomplete="off"
+                     autoComplete="off"
                     required
                     onChange={e=>setUsername(e.target.value)}
                   />
                 </div>
                 
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="firstname">About Me</label>
+              <div  className="form-row">
+                <div  className="form-group col-md-6">
+                  <label htmlFor="firstname">About Me</label>
                   <input
                     type="text"
                     id="about"
-                    class="form-control"  
+                     className="form-control"  
                     placeholder="About me"
-                    autocomplete="off"
+                     autoComplete="off"
                     // required
                     onChange={e=>setAbout(e.target.value)}
                   />
                 </div>
                 
               </div>
-              <div class="form-group">
-                <label for="inputEmail4">Email</label>
+              <div  className="form-group">
+                <label htmlFor="inputEmail4">Email</label>
                 <input
                   type="email"
-                  class="form-control"
+                   className="form-control"
                   id="inputEmail4"
                   placeholder={user.email}
-                  autocomplete="off"
+                   autoComplete="off"
                   required
                   onChange={e=>setEmail(e.target.value)}
                 />
               </div>
-              {/* <div class="form-group">
+              {/* <div  className="form-group">
                 <label for="inputAddress5">Address</label>
                 <input
                   type="text"
-                  class="form-control"
+                   className="form-control"
                   id="inputAddress5"
                   placeholder="P.O. Box 464, 5975 Eget Avenue"
                 />
               </div> */}
 
-              <hr class="my-4" />
-              <div class="row mb-4">
-                <div class="col-md-6">
-                  {/* <div class="form-group">
+              <hr  className="my-4" />
+              <div  className="row mb-4">
+                <div  className="col-md-6">
+                  {/* <div  className="form-group">
                     <h2>Change Password</h2>
                     <label for="inputPassword4">Old Password</label>
                     <input
                       type="password"
-                      class="form-control"
+                       className="form-control"
                       id="inputPassword5"
                       
                     />
@@ -203,7 +203,7 @@ export default function Settings() {
                     /> */}
                   {/* </div> */}
                   <div className="form-group">
-                    <label for="inputPassword6">Confirm Password</label>
+                    <label htmlFor="inputPassword6">Confirm Password</label>
                     <input
                       type="password"
                       className="form-control"
@@ -234,7 +234,7 @@ export default function Settings() {
               <button type="submit" className="btn btn-primary">
                 Save Change
               </button>
-              {success && <div class="alert alert-success my-2" role="alert">
+              {success && <div  className="alert alert-success my-2" role="alert">
   The Changes are Updated!!
 </div>}
             </form>
