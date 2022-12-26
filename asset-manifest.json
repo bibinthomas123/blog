@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/frontend/static/css/main.45ec5e14.css",
+    "main.js": "/frontend/static/js/main.6db9b24c.js",
+    "static/media/twitter.png": "/frontend/static/media/twitter.8e65601e69067aadfe55.png",
+    "index.html": "/frontend/index.html",
+    "main.45ec5e14.css.map": "/frontend/static/css/main.45ec5e14.css.map",
+    "main.6db9b24c.js.map": "/frontend/static/js/main.6db9b24c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.45ec5e14.css",
+    "static/js/main.6db9b24c.js"
+  ]
+}
