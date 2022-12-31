@@ -32,7 +32,7 @@ export default function Home() {
     ):(
       <Row className='py-5'>
         <Col md={8}>  <Posts posts={posts} /></Col>
-        <Col md={4}> <Sidebar /></Col>
+        {/* <Col md={4}> <Sidebar /></Col> */}
       </Row>
     )
   }
