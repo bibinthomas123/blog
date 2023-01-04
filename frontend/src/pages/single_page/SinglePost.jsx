@@ -24,8 +24,8 @@ export default function SinglePost() {
       const res = await axios.get("/posts?user=" + post.username);
       setProfile(res.data);
       // console.log()
-      console.log(res.data);
-      console.log(profile);
+      
+      
     };
     fetchPosts();
   }, [search]);

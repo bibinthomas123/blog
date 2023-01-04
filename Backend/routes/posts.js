@@ -48,7 +48,7 @@ router.delete("/:id", async (req, res) => {
       try {
         await post.delete();
         await unlink(`../images/${post.photo}`);
-        console.log(`successfully deleted ${path}`);
+        
         res.status(200).json("post has been deleted");
       } catch (err) {
         res.status(500).json(err);
