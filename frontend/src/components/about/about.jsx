@@ -17,7 +17,7 @@ function About() {
     const fetchPosts = async () => {
       const res = await axios.get("posts?user="+user.username);
       setPosts(res.data);
-      console.log(res.data);
+      
       // console.log(posts[0]._id)
     };
     fetchPosts();
@@ -45,7 +45,7 @@ function About() {
           setImage(reponse.response.results[Math.floor(Math.random() * 10)].urls.regular);
         });
     };
-    console.log(image)
+    
 
     searchPhotos();
   }, []);
