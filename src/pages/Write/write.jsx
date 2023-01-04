@@ -41,11 +41,11 @@ export default function Write() {
         {
           headers: { "Content-Type": "multipart/form-data" },
           onUploadProgress: function (e) {
-            console.log(e.loaded / e.total);
+            
           },
         }
       );
-      console.log(cloudinaryResponse.data);
+      
 
       // send the image info back to our server
       // const photoData = {

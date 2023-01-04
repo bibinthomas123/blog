@@ -11,7 +11,7 @@ export default function Settings() {
     const fetchUser = async ()=>{
       const getUser = await axios.get("/users/"+user._id)
       setValue(getUser.data)
-      console.log(getUser.data)
+      
     }
     fetchUser()
    
@@ -56,11 +56,11 @@ export default function Settings() {
         {
           headers: { "Content-Type": "multipart/form-data" },
           onUploadProgress: function (e) {
-            console.log(e.loaded / e.total);
+            
           },
         }
       );
-      console.log(cloudinaryResponse.data);
+      
       updatedUser.profilePic = cloudinaryResponse.data.public_id;
     }
     try {

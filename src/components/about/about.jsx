@@ -20,7 +20,7 @@ function About() {
     const FetchUsers = async () => {
       const res = await axios.get("/users?user=" + users);
       setUser(res.data[0]);
-      console.log(User);
+      
     };
     FetchUsers();
 
