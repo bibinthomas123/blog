@@ -1,0 +1,49 @@
+.date{
+  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  color: #444;
+}
+.subtext{
+  font-family:"Libre Baskerville",Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #444444;
+  margin-top: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp:4 ;
+  -webkit-box-orient: vertical;
+}
+.title{
+    font-family:"Montserrat",sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    text-transform:capitalize;
+}
+
+.image{
+   padding: 15px;
+   border-radius: 10px;
+}
+.post {
+    width: 385px;
+    /* margin: 0px 25px 40px 25px; */
+    margin:0px 10px 20px 0;
+  }
+
+
+  .card-img{
+    width:50%;
+    height:50%;
+    /* object-fit:cover; */
+    border-bottom-right-radius:0px;
+}
+.card p{
+  line-height: 1.4em;
+}
+
+.min-height{
+  max-width: fit-content;
+  max-height: 250px;
+}

@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.bg-image{
+    background-position: center;
+    background-size: cover;
+}
+.text-h1{
+    font: 'Libre Baskerville',sans-serif;
+    font-size: 91px;
+}

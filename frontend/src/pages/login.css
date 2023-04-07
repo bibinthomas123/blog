@@ -1,0 +1,86 @@
+.login_bg--container--login {
+  background-image: url("../images/Data_security_05.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 80vh;
+}
+.login_bg--container--signup {
+  background-image: url("../images/20943593.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 80vh;
+}
+h1,
+.text_h1 {
+  font-family: "Libre Baskerville", serif;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+}
+
+.login__form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768) {
+  .login__form {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+.shadow {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 15px 15px 66px #bfbfbf, -15px -15px 66px #ffffff;
+}
+
+.bounce {
+  outline: 0;
+  border-color: red;
+  animation-name: bounce;
+  animation-duration: 0.5s;
+  animation-delay: 0.25s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+  37% {
+    transform: translateX(5px);
+    timing-function: ease-out;
+  }
+  55% {
+    transform: translateX(-5px);
+    timing-function: ease-in;
+  }
+  73% {
+    transform: translateX(4px);
+    timing-function: ease-out;
+  }
+  82% {
+    transform: translateX(-4px);
+    timing-function: ease-in;
+  }
+  91% {
+    transform: translateX(2px);
+    timing-function: ease-out;
+  }
+  96% {
+    transform: translateX(-2px);
+    timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+}
